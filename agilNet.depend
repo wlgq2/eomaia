@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1485100119 source:/sources/agilNet/demo/test/main.cpp
+	<boost/thread/thread.hpp>
+	<iostream>
+	<cstdlib>
+	<boost/asio.hpp>
+	"AtomicInt.h"
+
+1485100108 /sources/agilNet/support/AtomicInt.h
+	<boost/noncopyable.hpp>
+	<stdint.h>
+
