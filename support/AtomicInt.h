@@ -26,60 +26,60 @@ public:
     {
         return __sync_val_compare_and_swap(&value, 0, 0);
     }
-	void set(T newValue)
-	{
-		getAndSet(newValue);
-	}
-
-	T getAndSet(T newValue)
+    void set(T newValue)
     {
-		return __sync_lock_test_and_set(&value, newValue);
+        getAndSet(newValue);
+    }
+
+    T getAndSet(T newValue)
+    {
+        return __sync_lock_test_and_set(&value, newValue);
     }
 
     T getAndAdd(T x)
     {
-		return __sync_fetch_and_add(&value, x);
+        return __sync_fetch_and_add(&value, x);
     }
 
     T addAndGet(T x)
     {
-		return __sync_add_and_fetch(&value,x);
+        return __sync_add_and_fetch(&value,x);
     }
 
     T incAndGet()
     {
-		return addAndGet(1);
+        return addAndGet(1);
     }
 
     T decAndGet()
     {
-		return addAndGet(-1);
+        return addAndGet(-1);
     }
 
     T getAndDec()
     {
-		return getAndAdd(-1);
+        return getAndAdd(-1);
     }
 
     T getAndInc()
     {
-		return addAndGet(1);
+        return addAndGet(1);
     }
 
 
     void add(T x)
     {
-		getAndAdd(x);
+        getAndAdd(x);
     }
 
     void inc()
     {
-		getAndInc();
+        getAndInc();
     }
 
     void dec()
     {
-		getAndDec();
+        getAndDec();
     }
 
 
