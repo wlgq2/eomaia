@@ -1,12 +1,21 @@
 # depslib dependency file v1.0
-1485100119 source:/sources/agilNet/demo/test/main.cpp
+1485184051 source:/sources/agilNet/demo/test/main.cpp
 	<boost/thread/thread.hpp>
 	<iostream>
 	<cstdlib>
 	<boost/asio.hpp>
 	"AtomicInt.h"
 
-1485100108 /sources/agilNet/support/AtomicInt.h
+1485181508 /sources/agilNet/support/AtomicInt.h
 	<boost/noncopyable.hpp>
 	<stdint.h>
+
+1485182704 /sources/agilNet/support/Condition.h
+	"Mutex.h"
+	<boost/noncopyable.hpp>
+	<pthread.h>
+
+1485182613 /sources/agilNet/support/Mutex.h
+	<boost/noncopyable.hpp>
+	<pthread.h>
 

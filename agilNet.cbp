@@ -20,9 +20,6 @@
 				<Option object_output="obj/Release/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
-				<Compiler>
-					<Add option="-O2" />
-				</Compiler>
 				<Linker>
 					<Add option="-s" />
 				</Linker>
@@ -30,7 +27,16 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add directory="support" />
 		</Compiler>
+		<ResourceCompiler>
+			<Add directory="support" />
+		</ResourceCompiler>
+		<Linker>
+			<Add option="-lboost_system" />
+			<Add option="-lboost_thread" />
+		</Linker>
+		<Unit filename="demo/test/main.cpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />
