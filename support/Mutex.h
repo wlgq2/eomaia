@@ -60,12 +60,12 @@ public:
     explicit MutexGuard(Mutex& mutex)
       : mutex(mutex)
     {
-      mutex.lock();
+        mutex.lock();
     }
 
     ~MutexGuard()
     {
-      mutex.unlock();
+        mutex.unlock();
     }
 
 private:
