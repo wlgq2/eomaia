@@ -28,6 +28,7 @@
 		<Compiler>
 			<Add option="-Wall" />
 			<Add directory="support" />
+			<Add directory="Net" />
 		</Compiler>
 		<ResourceCompiler>
 			<Add directory="support" />
@@ -36,6 +37,7 @@
 			<Add option="-lboost_system" />
 			<Add option="-lboost_thread" />
 		</Linker>
+		<Unit filename="Net/Epoll.cpp" />
 		<Unit filename="demo/test/main.cpp" />
 		<Extensions>
 			<code_completion />

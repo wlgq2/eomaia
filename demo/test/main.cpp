@@ -16,7 +16,7 @@ void func1()
 {
     while(1)
     {
-        condtion.notify();
+condtion.notifyAll();
         boost::this_thread::sleep(boost::posix_time::seconds(1));
     }
 }
@@ -25,6 +25,7 @@ void func2()
 {
     while(1)
     {
+
         condtion.wait();
         cout << "func2:"<<endl;
 
@@ -40,6 +41,7 @@ int main()
     num.add(4);
 
     cout<<num.get()<<endl;
+
 
     boost::thread thread1(&func1);
     boost::thread thread2(&func2);
