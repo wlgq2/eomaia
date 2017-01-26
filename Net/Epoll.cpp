@@ -5,7 +5,7 @@
 #include <unistd.h>
 #include <string.h>
 
-using namespace agilNet::Net;
+using namespace agilNet::net;
 
 Epoll::Epoll():
     epollFd(epoll_create1(EPOLL_CLOEXEC))
@@ -35,23 +35,31 @@ int Epoll::epollCtrl(int operation,int fd,int events)
 
 }
 
-bool Epoll::addEvent(int fd,int events)
+bool Epoll::addEvent(IOEvent* ioEvent)
 {
 
-    if(epollCtrl(EPOLL_CTL_ADD,fd,events)<0)
+    if(epollCtrl(EPOLL_CTL_ADD,ioEvent->getFd(),ioEvent->getEvents())<0)
     {
         return false;
     }
     return true;
 
 }
-bool Epoll::removeEvent(int fd,int events)
+bool Epoll::removeEvent(IOEvent* ioEvent)
 {
 
-    if(epollCtrl(EPOLL_CTL_DEL,fd,events)<0)
+    if(epollCtrl(EPOLL_CTL_DEL,ioEvent->getFd(),ioEvent->getEvents())<0)
     {
         return false;
     }
     return true;
 }
 
+bool Epoll::modifyEvent(IOEvent* ioEvent)
+{
+    if(epollCtrl(EPOLL_CTL_MOD,ioEvent->getFd(),ioEvent->getEvents())<0)
+    {
+        return false;
+    }
+    return true;
+}

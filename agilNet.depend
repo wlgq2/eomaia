@@ -1,37 +1,54 @@
 # depslib dependency file v1.0
-1485184051 source:/sources/agilNet/demo/test/main.cpp
+1485440462 source:/home/agilNet/Net/Epoll.cpp
+	<Epoll.h>
+	<sys/epoll.h>
+	<unistd.h>
+	<string.h>
+
+1485440423 /home/agilNet/Net/Epoll.h
+	<boost/noncopyable.hpp>
+	<IOEvent.h>
+
+1485441093 /home/agilNet/Net/IOEvent.h
+
+1485441129 source:/home/agilNet/Net/IOEvent.cpp
+	<IOEvent.h>
+	<sys/epoll.h>
+
+1485438292 source:/home/agilNet/Net/Socket.cpp
+	<Socket.h>
+	<SocketOperation.h>
+
+1485438247 /home/agilNet/Net/Socket.h
+	<SocketOperation.h>
+
+1485432185 /home/agilNet/Net/SocketOperation.h
+	<sys/types.h>
+	<string>
+	<netinet/in.h>
+
+1485431739 source:/home/agilNet/Net/SocketAddr.cpp
+	<SocketAddr.h>
+	<SocketOperation.h>
+
+1485431571 /home/agilNet/Net/SocketAddr.h
+	<netinet/in.h>
+	<string>
+
+1485437963 source:/home/agilNet/Net/SocketOperation.cpp
+	<SocketOperation.h>
+	<boost/algorithm/string.hpp>
+	<vector>
+	<sstream>
+
+1485430110 source:/home/agilNet/demo/test/main.cpp
 	<boost/thread/thread.hpp>
 	<iostream>
 	<cstdlib>
 	<boost/asio.hpp>
-	"AtomicInt.h"
-
-1485184051 .h"
-
-1485181508 /sources/agilNet/support/AtomicInt.h
-	<boost/noncopyable.hpp>
-	<stdint.h>
-
-1485181508 
-
-1485182704 /sources/agilNet/support/Condition.h
-	"Mutex.h"
-	<boost/noncopyable.hpp>
-	<pthread.h>
-
-1485182613 >
-
-1485182613 /sources/agilNet/support/Mutex.h
-	<boost/noncopyable.hpp>
-	<pthread.h>
-
-1485351790 source:/home/agilNet/demo/test/main.cpp
-	<boost/thread/thread.hpp>
-	<iostream>
-	<cstdlib>
-	<boost/asio.hpp>
-	"AtomicInt.h"
-	"Condition.h"
+	<AtomicInt.h>
+	<Condition.h>
+	<SocketAddr.h>
 
 1485349619 /home/agilNet/support/AtomicInt.h
 	<boost/noncopyable.hpp>
@@ -44,13 +61,4 @@
 1485349619 /home/agilNet/support/Mutex.h
 	<boost/noncopyable.hpp>
 	<pthread.h>
-
-1485358956 source:/home/agilNet/Net/Epoll.cpp
-	<Epoll.h>
-	<sys/epoll.h>
-	<unistd.h>
-	<string.h>
-
-1485358978 /home/agilNet/Net/Epoll.h
-	<boost/noncopyable.hpp>
 

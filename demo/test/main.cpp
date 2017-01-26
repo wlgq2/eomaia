@@ -3,12 +3,13 @@
 #include <cstdlib>
 #include <boost/asio.hpp>
 
-#include "AtomicInt.h"
-#include "Condition.h"
+#include <AtomicInt.h>
+#include <Condition.h>
+#include <SocketAddr.h>
 
 using namespace std;
 using namespace agilNet;
-
+using namespace agilNet::net;
 
 Mutex mutex;
 Condition condtion(mutex);
@@ -35,24 +36,15 @@ void func2()
 int main()
 {
 
-    AtomicInt16 num;
-    num.set(434);
-    num.inc();
-    num.add(4);
-
-    cout<<num.get()<<endl;
-
-
-    boost::thread thread1(&func1);
-    boost::thread thread2(&func2);
-
-    thread2.join();
-    thread1.join();
-   while(1)
-   {
-        boost::this_thread::sleep(boost::posix_time::seconds(100));
-
-   }
- //assert(false);
+    SocketAddr addr("15.63.57.47:4512");
+    if(!addr.isValid())
+    {
+        cout<<"error"<<endl;
+        return -1;
+    }
+    struct sockaddr_in haha = addr.getAddr();
+    cout<<"addr"<<haha.sin_addr.s_addr<<endl;
+    cout<<"port"<<htons(haha.sin_port)<<endl;
     return 0;
+
 }

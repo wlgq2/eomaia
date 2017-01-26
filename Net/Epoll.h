@@ -3,11 +3,13 @@
 
 
 #include <boost/noncopyable.hpp>
+#include <IOEvent.h>
+
 
 namespace agilNet
 {
 
-namespace Net
+namespace net
 {
 
 
@@ -16,8 +18,9 @@ class Epoll : boost::noncopyable
 public:
     Epoll();
     ~Epoll();
-    bool addEvent(int fd,int events);
-    bool removeEvent(int fd,int events);
+    bool addEvent(IOEvent* ioEvent);
+    bool removeEvent(IOEvent* ioEvent);
+    bool modifyEvent(IOEvent* ioEvent);
 private:
     int epollCtrl(int operation,int fd,int events);
     int epollFd;
