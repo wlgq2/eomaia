@@ -19,7 +19,6 @@ Epoll::Epoll():
 
 Epoll::~Epoll()
 {
-
     ::close(epollFd);
 }
 
