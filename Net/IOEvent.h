@@ -13,6 +13,7 @@ public:
     static const int writeEventFlag;
 
     IOEvent(int fd);
+    ~IOEvent();
     int getFd();
     int getEvents();
 

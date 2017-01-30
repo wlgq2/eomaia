@@ -19,6 +19,7 @@ public:
     SocketAddr(const string& addrPort);
     SocketAddr(const string& addr,uint16_t port);
     SocketAddr(uint16_t port);
+    ~SocketAddr();
     struct sockaddr_in getAddr();
     bool isValid();
 private:

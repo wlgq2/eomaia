@@ -11,6 +11,7 @@ class IOEventLoop
 {
 public :
     IOEventLoop();
+    ~IOEventLoop();
     void run();
 private:
     IOEventCtrl* eventCtrl;

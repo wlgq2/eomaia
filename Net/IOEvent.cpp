@@ -1,6 +1,6 @@
 #include <IOEvent.h>
 #include <sys/epoll.h>
-
+#include <unistd.h>
 
 using namespace agilNet::net;
 
@@ -15,6 +15,10 @@ IOEvent::IOEvent(int fd)
 
 }
 
+IOEvent::~IOEvent()
+{
+    //::close(eventFd);
+}
 void IOEvent::enableReading()
 {
     events |= readEventFlag;

@@ -10,6 +10,10 @@ SocketAddr::SocketAddr(struct sockaddr_in addr)
 
 }
 
+SocketAddr::~SocketAddr()
+{
+
+}
 SocketAddr::SocketAddr(const string& addrPort)
     :valid(false)
 {

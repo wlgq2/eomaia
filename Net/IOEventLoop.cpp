@@ -8,6 +8,11 @@ IOEventLoop::IOEventLoop()
 {
 
 }
+
+IOEventLoop::~IOEventLoop()
+{
+    delete eventCtrl;
+}
 void IOEventLoop::run()
 {
     eventCtrl->waitAndRunHandle();

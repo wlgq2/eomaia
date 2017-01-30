@@ -22,6 +22,7 @@ class IOEventCtrl
 {
 public:
     IOEventCtrl(IOEventLoop* l);
+    ~IOEventCtrl();
     void addEvent(shared_ptr<IOEvent> event);
     void deleteEvent(shared_ptr<IOEvent> event);
     void modifyEvent(shared_ptr<IOEvent> event);

@@ -11,27 +11,6 @@ using namespace std;
 using namespace agilNet;
 using namespace agilNet::net;
 
-Mutex mutex;
-Condition condtion(mutex);
-void func1()
-{
-    while(1)
-    {
-condtion.notifyAll();
-        boost::this_thread::sleep(boost::posix_time::seconds(1));
-    }
-}
-
-void func2()
-{
-    while(1)
-    {
-
-        condtion.wait();
-        cout << "func2:"<<endl;
-
-    }
-}
 
 int main()
 {
