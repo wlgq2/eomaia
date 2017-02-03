@@ -3,11 +3,15 @@
 
 #include <boost/function.hpp>
 
+
+
 using namespace boost;
 namespace agilNet
 {
 namespace net
 {
+class IOEventLoop;
+
 class IOEvent
 {
 public:

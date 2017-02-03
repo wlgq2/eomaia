@@ -13,13 +13,10 @@ template<typename T>
 class AtomicInt  : boost::noncopyable
 {
 public:
-    AtomicInt()
-      : value(0)
+    AtomicInt(T x =0)
+      //: value(x)
     {
-    }
-    AtomicInt(T x)
-      : value(x)
-    {
+        set(x);
     }
 
     T get()

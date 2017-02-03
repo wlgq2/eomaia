@@ -54,6 +54,10 @@
 		<Unit filename="net/SocketAddr.h" />
 		<Unit filename="net/SocketOperation.cpp" />
 		<Unit filename="net/SocketOperation.h" />
+		<Unit filename="net/TcpAccept.cpp" />
+		<Unit filename="net/TcpAccept.h" />
+		<Unit filename="net/TcpServer.cpp" />
+		<Unit filename="net/TcpServer.h" />
 		<Unit filename="support/AtomicInt.h" />
 		<Unit filename="support/Condition.h" />
 		<Unit filename="support/Mutex.h" />

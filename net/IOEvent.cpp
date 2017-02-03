@@ -2,6 +2,8 @@
 #include <sys/epoll.h>
 #include <unistd.h>
 
+#include <IOEventLoop.h>
+
 using namespace agilNet::net;
 
 const int IOEvent::noneEventFlag = 0;
@@ -12,7 +14,6 @@ IOEvent::IOEvent(int fd)
     :eventFd(fd),
     events(0)
 {
-
 }
 
 IOEvent::~IOEvent()
