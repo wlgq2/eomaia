@@ -38,6 +38,8 @@
 			<Add option="-lboost_thread" />
 		</Linker>
 		<Unit filename="demo/test/main.cpp" />
+		<Unit filename="net/Buffer.cpp" />
+		<Unit filename="net/Buffer.h" />
 		<Unit filename="net/Epoll.cpp" />
 		<Unit filename="net/Epoll.h" />
 		<Unit filename="net/IOEvent.cpp" />
