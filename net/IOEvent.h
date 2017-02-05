@@ -19,18 +19,17 @@ public:
     static const int readEventFlag;
     static const int writeEventFlag;
 
-    IOEvent(int fd);
+    IOEvent(IOEventLoop* loop,int fd);
     ~IOEvent();
     int getFd();
     uint32_t getEvents();
 
-    void enableReading();
-    void disableReading() ;
-    void enableWriting() ;
-    void disableWriting() ;
+    void enableReading(bool isEnable);
+    void enableWriting(bool isEnable) ;
     void disableAll();
     bool isWriting();
     bool isReading();
+    void removeFromLoop();
 
     void handle(uint32_t revents);
 
@@ -39,6 +38,7 @@ public:
     void setErrorFunc(function<void()> func);
     void setCloseFunc(function<void()> func);
 private:
+    IOEventLoop* eventLoop;
     void update();
     int eventFd;
     uint32_t events;

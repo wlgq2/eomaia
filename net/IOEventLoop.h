@@ -16,6 +16,8 @@ public :
     void addEvent(shared_ptr<IOEvent> event);
     void removeEvent(shared_ptr<IOEvent> event);
     void modifyEvent(shared_ptr<IOEvent> event);
+    void modifyEvent(int fd);
+    void removeEvent(int fd);
     void run();
 private:
     static const int PollTimeMs;

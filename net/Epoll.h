@@ -21,6 +21,7 @@ public:
     bool addEvent(IOEvent* ioEvent);
     bool removeEvent(IOEvent* ioEvent);
     bool modifyEvent(IOEvent* ioEvent);
+    bool removeEvent(int fd);
     int waitEvent(struct epoll_event* eventList,int eventSize,int timeMs);
 private:
     int epollCtrl(int operation,int fd,int events);

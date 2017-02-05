@@ -35,6 +35,28 @@ void IOEventCtrl::modifyEvent(shared_ptr<IOEvent> event)
     }
 }
 
+void  IOEventCtrl::modifyEvent(int fd)
+{
+    if(eventPool.find(fd) != eventPool.end())
+    {
+        shared_ptr<IOEvent> eventS= eventPool[fd].lock();
+        if(eventS)
+        {
+            IOEvent* event =eventS.get();
+            epoll.modifyEvent(event);
+        }
+    }
+}
+
+
+void IOEventCtrl::deleteEvent(int fd)
+{
+    if(eventPool.find(fd) != eventPool.end())
+    {
+        epoll.removeEvent(fd);
+        eventPool.erase(fd);
+    }
+}
 void IOEventCtrl::waitAndRunHandle(int timeMs)
 {
     int cnt = epoll.waitEvent(&*activeEvents.begin(),activeEvents.size(),timeMs);

@@ -53,6 +53,15 @@ bool Epoll::removeEvent(IOEvent* ioEvent)
     return true;
 }
 
+bool Epoll::removeEvent(int fd)
+{
+
+    if(epollCtrl(EPOLL_CTL_DEL,fd,0)<0)
+    {
+        return false;
+    }
+    return true;
+}
 bool Epoll::modifyEvent(IOEvent* ioEvent)
 {
     if(epollCtrl(EPOLL_CTL_MOD,ioEvent->getFd(),ioEvent->getEvents())<0)

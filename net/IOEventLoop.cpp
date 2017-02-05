@@ -30,7 +30,16 @@ void IOEventLoop::removeEvent(shared_ptr<IOEvent> event)
 {
     eventCtrl->deleteEvent(event);
 }
+void IOEventLoop::removeEvent(int fd)
+{
+    eventCtrl->deleteEvent(fd);
+}
 void IOEventLoop::modifyEvent(shared_ptr<IOEvent> event)
 {
     eventCtrl->modifyEvent(event);
+}
+
+void IOEventLoop::modifyEvent(int fd)
+{
+    eventCtrl->modifyEvent(fd);
 }

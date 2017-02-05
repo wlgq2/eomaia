@@ -4,14 +4,16 @@
 
 #include <IOEventLoop.h>
 
+
 using namespace agilNet::net;
 
 const int IOEvent::noneEventFlag = 0;
 const int IOEvent::readEventFlag = EPOLLIN | EPOLLPRI;
 const int IOEvent::writeEventFlag = EPOLLOUT;
 
-IOEvent::IOEvent(int fd)
-    :eventFd(fd),
+IOEvent::IOEvent(IOEventLoop* loop,int fd)
+    :eventLoop(loop),
+    eventFd(fd),
     events(0)
 {
 }
@@ -20,26 +22,24 @@ IOEvent::~IOEvent()
 {
     //::close(eventFd);
 }
-void IOEvent::enableReading()
+void IOEvent::enableReading(bool isEnable)
 {
-    events |= readEventFlag;
+    if(isEnable)
+        events |= readEventFlag;
+    else
+        events &= ~readEventFlag;
     update();
 }
-void IOEvent::disableReading()
+
+void IOEvent::enableWriting(bool isEnable)
 {
-    events &= ~readEventFlag;
+    if(isEnable)
+        events |= writeEventFlag;
+    else
+        events &= ~writeEventFlag;
     update();
 }
-void IOEvent::enableWriting()
-{
-    events |= writeEventFlag;
-    update();
-}
-void IOEvent::disableWriting()
-{
-    events &= ~writeEventFlag;
-    update();
-}
+
 void IOEvent::disableAll()
 {
     events = noneEventFlag;
@@ -84,9 +84,13 @@ void IOEvent::setCloseFunc(function<void()> func)
 }
 void IOEvent::update()
 {
-
+    eventLoop->modifyEvent(eventFd);
 }
 
+void IOEvent::removeFromLoop()
+{
+    eventLoop->removeEvent(eventFd);
+}
 void IOEvent::handle(uint32_t revents)
 {
     if ((revents & EPOLLHUP) && !(revents & EPOLLIN))

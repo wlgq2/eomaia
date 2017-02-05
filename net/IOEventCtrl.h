@@ -27,6 +27,8 @@ public:
     void addEvent(shared_ptr<IOEvent> event);
     void deleteEvent(shared_ptr<IOEvent> event);
     void modifyEvent(shared_ptr<IOEvent> event);
+    void modifyEvent(int fd);
+    void deleteEvent(int fd);
     void waitAndRunHandle(int timeMs);
 private:
     static const int activeEventLength;

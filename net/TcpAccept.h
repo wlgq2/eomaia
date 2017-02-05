@@ -14,14 +14,18 @@ namespace net
 class TcpAccept
 {
 public:
-    TcpAccept(IOEventLoop* loop);
+    TcpAccept(IOEventLoop* loop,SocketAddr& addr);
     ~TcpAccept();
+    void listen();
+    bool isListen();
+    void setNetConnectCallback( boost::function<void (int sockfd,const SocketAddr&)> callback);
 private:
     IOEventLoop* eventLoop;
     shared_ptr<Socket> socket;
     shared_ptr<IOEvent> event;
     bool listening;
 
+    void acceptHandle();
     boost::function<void (int sockfd,const SocketAddr&)> newConnectCallback;
 
 };
