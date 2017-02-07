@@ -2,6 +2,7 @@
 #include <SocketOperation.h>
 
 using namespace agilNet::net;
+using namespace std;
 
 SocketAddr::SocketAddr()
     :valid(false)

@@ -13,9 +13,9 @@ public :
     IOEventLoop();
     ~IOEventLoop();
 
-    void addEvent(shared_ptr<IOEvent> event);
-    void removeEvent(shared_ptr<IOEvent> event);
-    void modifyEvent(shared_ptr<IOEvent> event);
+    void addEvent(boost::shared_ptr<IOEvent> event);
+    void removeEvent(boost::shared_ptr<IOEvent> event);
+    void modifyEvent(boost::shared_ptr<IOEvent> event);
     void modifyEvent(int fd);
     void removeEvent(int fd);
     void run();

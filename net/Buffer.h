@@ -3,7 +3,7 @@
 #include <vector>
 #include <stdint.h>
 
-using namespace std;
+
 //这个类不是线程安全的。
 namespace agilNet
 {
@@ -21,13 +21,13 @@ public:
 
     uint8_t writableBytes() ;
 
-    void append(const char*  data, size_t len);
-    void ensureWritableBytes(size_t len);
+    void append(const char*  data, std::size_t len);
+    void ensureWritableBytes(std::size_t len);
 
 private:
     uint32_t readIndex;
     uint32_t writeIndex;
-    vector<uint8_t> buffer;
+    std::vector<uint8_t> buffer;
 };
 }
 }

@@ -8,8 +8,7 @@
 #include <Epoll.h>
 
 
-using namespace std;
-using namespace boost;
+
 
 namespace agilNet
 {
@@ -24,19 +23,19 @@ class IOEventCtrl
 public:
     IOEventCtrl(IOEventLoop* l);
     ~IOEventCtrl();
-    void addEvent(shared_ptr<IOEvent> event);
-    void deleteEvent(shared_ptr<IOEvent> event);
-    void modifyEvent(shared_ptr<IOEvent> event);
+    void addEvent(boost::shared_ptr<IOEvent> event);
+    void deleteEvent(boost::shared_ptr<IOEvent> event);
+    void modifyEvent(boost::shared_ptr<IOEvent> event);
     void modifyEvent(int fd);
     void deleteEvent(int fd);
     void waitAndRunHandle(int timeMs);
 private:
     static const int activeEventLength;
-    map<int,weak_ptr<IOEvent> > eventPool;
+    std::map<int,boost::weak_ptr<IOEvent> > eventPool;
 
     Epoll epoll;
     IOEventLoop* loop;
-    vector<struct epoll_event> activeEvents;
+    std::vector<struct epoll_event> activeEvents;
 };
 
 }

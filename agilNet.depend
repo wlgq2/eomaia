@@ -153,26 +153,26 @@
 	<SocketOperation.h>
 	<SocketAddr.h>
 
-1486195377 /sources/agilNet/net/SocketOperation.h
+1486479086 /sources/agilNet/net/SocketOperation.h
 	<sys/types.h>
 	<string>
 	<netinet/in.h>
 
-1486195377 /sources/agilNet/net/SocketAddr.h
+1486478823 /sources/agilNet/net/SocketAddr.h
 	<netinet/in.h>
 	<string>
 
-1486284729 /sources/agilNet/net/IOEventLoop.h
+1486479066 /sources/agilNet/net/IOEventLoop.h
 	<IOEventCtrl.h>
 
-1486284748 /sources/agilNet/net/IOEventCtrl.h
+1486478917 /sources/agilNet/net/IOEventCtrl.h
 	<map>
 	<vector>
 	<IOEvent.h>
 	<boost/weak_ptr.hpp>
 	<Epoll.h>
 
-1486284540 /sources/agilNet/net/IOEvent.h
+1486478957 /sources/agilNet/net/IOEvent.h
 	<boost/function.hpp>
 
 1486285001 /sources/agilNet/net/Epoll.h
@@ -180,13 +180,13 @@
 	<IOEvent.h>
 	<sys/epoll.h>
 
-1486195377 source:/sources/agilNet/net/Buffer.cpp
+1486478992 source:/sources/agilNet/net/Buffer.cpp
 	<Buffer.h>
 	<errno.h>
 	<sys/uio.h>
 	<SocketOperation.h>
 
-1486195377 /sources/agilNet/net/Buffer.h
+1486479166 /sources/agilNet/net/Buffer.h
 	<vector>
 	<stdint.h>
 
@@ -195,13 +195,13 @@
 	<string.h>
 	<unistd.h>
 
-1486285226 source:/sources/agilNet/net/IOEvent.cpp
+1486478966 source:/sources/agilNet/net/IOEvent.cpp
 	<IOEvent.h>
 	<sys/epoll.h>
 	<unistd.h>
 	<IOEventLoop.h>
 
-1486285041 source:/sources/agilNet/net/IOEventCtrl.cpp
+1486478860 source:/sources/agilNet/net/IOEventCtrl.cpp
 	<IOEventCtrl.h>
 
 1486284709 source:/sources/agilNet/net/IOEventLoop.cpp
@@ -225,7 +225,7 @@
 	<TcpServer.h>
 	<boost/thread/thread.hpp>
 
-1486305508 /sources/agilNet/net/TcpServer.h
+1486479100 /sources/agilNet/net/TcpServer.h
 	<AtomicInt.h>
 	<IOEventLoop.h>
 	<TcpAccept.h>
@@ -234,17 +234,30 @@
 	<TcpAccept.h>
 	<boost/thread/thread.hpp>
 
-1486305308 /sources/agilNet/net/TcpAccept.h
+1486479095 /sources/agilNet/net/TcpAccept.h
 	<IOEventLoop.h>
 	<Socket.h>
 
-1486307032 source:/sources/agilNet/demo/echo/EchoServer.cpp
+1486479141 source:/sources/agilNet/demo/echo/EchoServer.cpp
 	<EchoServer.h>
 	<iostream>
 
-1486307127 source:/sources/agilNet/demo/echo/main.cpp
+1486478386 source:/sources/agilNet/demo/echo/main.cpp
 	<EchoServer.h>
+	<Log.h>
 
-1486306924 /sources/agilNet/demo/echo/EchoServer.h
+1486479123 /sources/agilNet/demo/echo/EchoServer.h
 	<TcpServer.h>
+
+1486478361 source:/sources/agilNet/support/Log.cpp
+	<Log.h>
+	<cstddef>
+	<Mutex.h>
+
+1486478352 /sources/agilNet/support/Log.h
+	<boost/log/core.hpp>
+	<boost/log/trivial.hpp>
+	<boost/log/expressions.hpp>
+	<boost/log/utility/setup/file.hpp>
+	<iostream>
 

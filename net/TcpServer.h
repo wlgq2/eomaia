@@ -23,7 +23,7 @@ private:
 
     IOEventLoop* eventLoop;
     SocketAddr tcpAddr;
-    shared_ptr<TcpAccept> tcpAccept;
+    boost::shared_ptr<TcpAccept> tcpAccept;
     AtomicInt8 isStart;
 };
 

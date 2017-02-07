@@ -3,13 +3,13 @@
 
 #include <TcpServer.h>
 
-using namespace agilNet::net;
 
-class EchoServer : public TcpServer
+
+class EchoServer : public agilNet::net::TcpServer
 {
 public:
-    EchoServer(IOEventLoop* loop,SocketAddr& addr);
-    virtual void connectCallback(int sockfd,const SocketAddr& addr);
+    EchoServer(agilNet::net::IOEventLoop* loop,agilNet::net::SocketAddr& addr);
+    virtual void connectCallback(int sockfd,const agilNet::net::SocketAddr& addr);
     virtual void messageCallback();
     virtual void writeCompletCallback() ;
 };

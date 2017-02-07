@@ -3,7 +3,7 @@
 
 #include <netinet/in.h>
 #include <string>
-using namespace std;
+
 //#include <boost/algorithm/string.hpp>
 
 
@@ -18,8 +18,8 @@ public:
     SocketAddr();
     explicit SocketAddr(bool isAny,int port = 0);
     SocketAddr(struct sockaddr_in addr);
-    SocketAddr(const string& addrPort);
-    SocketAddr(const string& addr,uint16_t port);
+    SocketAddr(const std::string& addrPort);
+    SocketAddr(const std::string& addr,uint16_t port);
     SocketAddr(uint16_t port);
     ~SocketAddr();
     void setAddr(struct sockaddr_in addr);

@@ -1,6 +1,8 @@
 #include <IOEventCtrl.h>
 
 using namespace agilNet::net;
+using namespace std;
+using namespace boost;
 
 const int IOEventCtrl::activeEventLength = 16;
 

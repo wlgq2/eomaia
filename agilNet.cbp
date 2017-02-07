@@ -27,6 +27,7 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add option="-DBOOST_LOG_DYN_LINK" />
 			<Add directory="support" />
 			<Add directory="net" />
 			<Add directory="demo/echo" />
@@ -37,6 +38,8 @@
 		<Linker>
 			<Add option="-lboost_system" />
 			<Add option="-lboost_thread" />
+			<Add option="-lboost_log" />
+			<Add option="-lpthread" />
 		</Linker>
 		<Unit filename="demo/echo/EchoServer.cpp" />
 		<Unit filename="demo/echo/EchoServer.h" />
@@ -63,6 +66,8 @@
 		<Unit filename="net/TcpServer.h" />
 		<Unit filename="support/AtomicInt.h" />
 		<Unit filename="support/Condition.h" />
+		<Unit filename="support/Log.cpp" />
+		<Unit filename="support/Log.h" />
 		<Unit filename="support/Mutex.h" />
 		<Extensions>
 			<code_completion />

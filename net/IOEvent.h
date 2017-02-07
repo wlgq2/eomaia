@@ -5,7 +5,6 @@
 
 
 
-using namespace boost;
 namespace agilNet
 {
 namespace net
@@ -33,19 +32,19 @@ public:
 
     void handle(uint32_t revents);
 
-    void setReadFunc(function<void()> func);
-    void setWriteFunc(function<void()> func);
-    void setErrorFunc(function<void()> func);
-    void setCloseFunc(function<void()> func);
+    void setReadFunc(boost::function<void()> func);
+    void setWriteFunc(boost::function<void()> func);
+    void setErrorFunc(boost::function<void()> func);
+    void setCloseFunc(boost::function<void()> func);
 private:
     IOEventLoop* eventLoop;
     void update();
     int eventFd;
     uint32_t events;
-    function<void()> readHandle;
-    function<void()> writeHandle;
-    function<void()> errorHandle;
-    function<void()> closeHandle;
+    boost::function<void()> readHandle;
+    boost::function<void()> writeHandle;
+    boost::function<void()> errorHandle;
+    boost::function<void()> closeHandle;
 };
 
 }

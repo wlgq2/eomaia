@@ -5,6 +5,7 @@
 
 
 using namespace agilNet::net;
+using namespace std;
 
 const uint32_t Buffer::InitSize = 1024;
 

@@ -2,6 +2,7 @@
 
 
 using namespace agilNet::net;
+using namespace boost;
 
 const int IOEventLoop::PollTimeMs = 3000;
 IOEventLoop::IOEventLoop()

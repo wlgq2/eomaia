@@ -6,6 +6,7 @@
 
 
 using namespace agilNet::net;
+using namespace boost;
 
 const int IOEvent::noneEventFlag = 0;
 const int IOEvent::readEventFlag = EPOLLIN | EPOLLPRI;

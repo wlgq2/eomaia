@@ -4,6 +4,7 @@
 #include <sstream>
 
 using namespace agilNet::net;
+using namespace std;
 
 const int32_t SocketOperation::Ipv4AddrAny =htonl (INADDR_ANY);
 

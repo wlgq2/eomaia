@@ -21,8 +21,8 @@ public:
     void setNewConnectCallback( boost::function<void (int sockfd,const SocketAddr&)> callback);
 private:
     IOEventLoop* eventLoop;
-    shared_ptr<Socket> socket;
-    shared_ptr<IOEvent> event;
+    boost::shared_ptr<Socket> socket;
+    boost::shared_ptr<IOEvent> event;
     bool listening;
 
     void acceptHandle();

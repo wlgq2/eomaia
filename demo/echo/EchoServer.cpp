@@ -1,6 +1,9 @@
 #include <EchoServer.h>
 #include <iostream>
 
+using namespace agilNet::net;
+using namespace std;
+
 EchoServer::EchoServer(IOEventLoop* loop,SocketAddr& addr)
     :TcpServer(loop,addr)
 {
