@@ -4,6 +4,7 @@
 
 #include <boost/noncopyable.hpp>
 #include <pthread.h>
+#include <Log.h>
 
 
 
@@ -18,7 +19,7 @@ public:
     {
         if(pthread_mutex_init(&mutex, NULL)<0)
         {
-            //
+            agilNet::support::Log::getSingle()->write(agilNet::support::Log::error,"init mutex error.");
         }
     }
 
@@ -26,6 +27,7 @@ public:
     {
         if(pthread_mutex_destroy(&mutex)<0)
         {
+			agilNet::support::Log::getSingle()->write(agilNet::support::Log::error,"destroy mutex error .");
         }
     }
 
@@ -33,7 +35,7 @@ public:
     {
         if(pthread_mutex_lock(&mutex)<0);
         {
-
+			agilNet::support::Log::getSingle()->write(agilNet::support::Log::error,"lock mutex error .");
         }
     }
 
@@ -41,7 +43,7 @@ public:
     {
         if(pthread_mutex_unlock(&mutex)<0)
         {
-
+			agilNet::support::Log::getSingle()->write(agilNet::support::Log::error,"unlock mutex error .");
         }
     }
 

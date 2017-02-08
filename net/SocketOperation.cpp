@@ -2,7 +2,9 @@
 #include <boost/algorithm/string.hpp>
 #include <vector>
 #include <sstream>
+#include <Log.h>
 
+using namespace agilNet::support;
 using namespace agilNet::net;
 using namespace std;
 
@@ -14,7 +16,7 @@ int SocketOperation::createNonblockingSocket()
     int sockfd = ::socket(AF_INET, SOCK_STREAM | SOCK_NONBLOCK | SOCK_CLOEXEC, IPPROTO_TCP);
     if (sockfd < 0)
     {
-
+		Log::getSingle()->write(Log::error,"create socket error.");
     }
     return sockfd;
 
@@ -25,7 +27,7 @@ int SocketOperation::bind(int sockfd, const struct sockaddr_in* addr)
     int ret = ::bind(sockfd,  (struct sockaddr *)addr, (sizeof(struct sockaddr)));
     if (ret < 0)
     {
-
+		Log::getSingle()->write(Log::error,"bind socket error.");
     }
     return ret;
 }
@@ -35,7 +37,7 @@ int SocketOperation::listen(int sockfd)
     int ret = ::listen(sockfd, SOMAXCONN);
     if (ret < 0)
     {
-
+		Log::getSingle()->write(Log::error,"listen socket error.");
     }
     return ret;
 }
@@ -49,7 +51,7 @@ int  SocketOperation::accept(int sockfd, struct sockaddr_in* addr)
     int ret = ::accept(sockfd, (struct sockaddr *)addr,&addrlen);
     if(ret<0)
     {
-
+		Log::getSingle()->write(Log::error,"accept socket error.");
     }
     return ret;
 }
@@ -69,7 +71,7 @@ void SocketOperation::close(int sockfd)
 {
     if (::close(sockfd) < 0)
     {
-
+		Log::getSingle()->write(Log::error,"close socket error.");
     }
 }
 void SocketOperation::getAddrAnyIpv4(struct sockaddr_in& addrIn,uint16_t port)

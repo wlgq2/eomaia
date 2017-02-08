@@ -12,6 +12,11 @@ TcpServer::TcpServer(IOEventLoop* loop,SocketAddr& addr)
     tcpAccept->setNewConnectCallback(boost::bind(&TcpServer::connectCallback,this,_1,_2));
 }
 
+
+TcpServer::~TcpServer()
+{
+}
+
 void TcpServer::start()
 {
     tcpAccept->listen();

@@ -15,6 +15,8 @@ class TcpServer
 {
 public:
     TcpServer(IOEventLoop* loop,SocketAddr& addr);
+    //TcpServer 是个总是被继承的类，虚析构函数比较安全。
+    virtual ~TcpServer();
     void start();
     virtual void connectCallback(int sockfd,const SocketAddr& addr)=0;
     virtual void messageCallback()=0;
