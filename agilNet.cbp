@@ -27,7 +27,7 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
-			<Add option="-DBOOST_LOG_DYN_LINK" />
+			<Add option="-DBOOST_ALL_DYN_LINK" />
 			<Add directory="support" />
 			<Add directory="net" />
 			<Add directory="demo/echo" />
@@ -40,6 +40,7 @@
 			<Add option="-lboost_thread" />
 			<Add option="-lboost_log" />
 			<Add option="-lpthread" />
+			<Add option="-lboost_log_setup" />
 		</Linker>
 		<Unit filename="demo/echo/EchoServer.cpp" />
 		<Unit filename="demo/echo/EchoServer.h" />

@@ -245,7 +245,7 @@
 	<EchoServer.h>
 	<iostream>
 
-1486567037 source:/sources/agilNet/demo/echo/main.cpp
+1486571824 source:/sources/agilNet/demo/echo/main.cpp
 	<EchoServer.h>
 	<iostream>
 	<Log.h>
@@ -254,15 +254,19 @@
 1486479123 /sources/agilNet/demo/echo/EchoServer.h
 	<TcpServer.h>
 
-1486566964 source:/sources/agilNet/support/Log.cpp
+1486571088 source:/sources/agilNet/support/Log.cpp
 	<Log.h>
 	<cstddef>
 	<Mutex.h>
 
-1486568025 /sources/agilNet/support/Log.h
+1486570862 /sources/agilNet/support/Log.h
 	<boost/log/core.hpp>
 	<boost/log/trivial.hpp>
 	<boost/log/expressions.hpp>
+	<boost/log/sinks/text_file_backend.hpp>
 	<boost/log/utility/setup/file.hpp>
+	<boost/log/utility/setup/common_attributes.hpp>
+	<boost/log/sources/severity_logger.hpp>
+	<boost/log/sources/record_ostream.hpp>
 	<iostream>
 

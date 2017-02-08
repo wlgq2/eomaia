@@ -15,9 +15,13 @@ Log::Log()
 {
     boost::log::add_file_log("log/agilNet-%Y-%m-%d_%H-%M-%S.%N.log",
         boost::log::keywords::rotation_size=FileSize,
-        boost::log::keywords::auto_flush = true
-       // boost::log::keywords::format= "[%TimeStamp%]: %Message%"
+        boost::log::keywords::auto_flush = true,
+        boost::log::keywords::format= "[%TimeStamp%]: %Message%"
  );
+  boost::log::add_common_attributes();
+    using namespace boost::log::trivial;
+   //  boost::log::trivial:: src::severity_logger< severity_level > lg;
+
 }
 
 Log* Log::getSingle()
