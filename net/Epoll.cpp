@@ -11,7 +11,7 @@ Epoll::Epoll()
 {
     if(epollFd<0)
     {
-		Log::getSingle()->write(Log::error,"create epoll error.");
+        Log::getSingle()->write(Log::error,"create epoll error.");
     }
 }
 
@@ -37,7 +37,7 @@ bool Epoll::addEvent(IOEvent* ioEvent)
 
     if(epollCtrl(EPOLL_CTL_ADD,ioEvent->getFd(),ioEvent->getEvents())<0)
     {
-		Log::getSingle()->write(Log::error,"add epoll error.");
+        Log::getSingle()->write(Log::error,"add epoll error.");
         return false;
     }
     return true;
@@ -48,7 +48,7 @@ bool Epoll::removeEvent(IOEvent* ioEvent)
 
     if(epollCtrl(EPOLL_CTL_DEL,ioEvent->getFd(),ioEvent->getEvents())<0)
     {
-		Log::getSingle()->write(Log::error,"delete epoll error.");
+        Log::getSingle()->write(Log::error,"delete epoll error.");
         return false;
     }
     return true;
@@ -59,7 +59,7 @@ bool Epoll::removeEvent(int fd)
 
     if(epollCtrl(EPOLL_CTL_DEL,fd,0)<0)
     {
-		Log::getSingle()->write(Log::error,"delete epoll error.");
+        Log::getSingle()->write(Log::error,"delete epoll error.");
         return false;
     }
     return true;
@@ -68,7 +68,7 @@ bool Epoll::modifyEvent(IOEvent* ioEvent)
 {
     if(epollCtrl(EPOLL_CTL_MOD,ioEvent->getFd(),ioEvent->getEvents())<0)
     {
-		Log::getSingle()->write(Log::error,"modify epoll error.");
+        Log::getSingle()->write(Log::error,"modify epoll error.");
         return false;
     }
     return true;

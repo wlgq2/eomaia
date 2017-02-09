@@ -31,7 +31,7 @@ Log* Log::getSingle()
 
 void Log:: write(Level level,const string& content )
 {
-	//这个丑陋的分支主要是因为BOOST_LOG_TRIVIAL是个宏
+    //这个丑陋的分支主要是因为BOOST_LOG_TRIVIAL是个宏
     switch(level)
     {
         case trace:
