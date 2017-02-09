@@ -10,6 +10,7 @@
 #include <boost/log/sources/severity_logger.hpp>
 #include <boost/log/sources/record_ostream.hpp>
 #include <iostream>
+#include <map>
 
 namespace agilNet
 {
@@ -18,11 +19,6 @@ namespace support
 
 class Log
 {
-private :
-    Log();
-    static const long long FileSize;
-    static Log* single;
-    static bool isInit;
 public :
     enum Level
     {
@@ -70,6 +66,13 @@ public :
     {
         return *getSingle();
     }
+
+private :
+    Log();
+    static const long long FileSize;
+    static Log* single;
+    static bool isInit;
+    std::map<Level,std::string> severityMap;
 };
 }
 }
