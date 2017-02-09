@@ -11,7 +11,7 @@ EchoServer::EchoServer(IOEventLoop* loop,SocketAddr& addr)
 
 void EchoServer::connectCallback(int sockfd,const SocketAddr& addr)
 {
-    cout<<"new connect:"<<endl;
+    cout<<"new connect:"<<addr.toString()<<endl;
 }
 void EchoServer::messageCallback()
 {

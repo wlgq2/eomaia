@@ -142,8 +142,17 @@ bool SocketOperation::toAddrIpv4(uint16_t port,struct sockaddr_in& addrIn)
 }
 string SocketOperation::ipToString(struct sockaddr_in addr)
 {
-    string sAddr ;
-    return sAddr;
+    std::stringstream stream;
+
+    uint8_t* addrArray= (uint8_t*)&addr.sin_addr.s_addr;
+    for(int i=0;i<4;i++)
+    {
+        stream<<(uint16_t)addrArray[i];
+        if(i!=3)
+           stream <<".";
+    }
+    stream<<":"<<(((addr.sin_port<<8)&0x00ffff)|(addr.sin_port>>8));
+    return stream.str() ;
 }
 string SocketOperation::toString(struct sockaddr_in addr)
 {

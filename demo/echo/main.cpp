@@ -9,8 +9,6 @@ using namespace agilNet::net;
 
 int main()
 {
-
-    Log::getSingle()->write(Log::error,"ddddd");
     IOEventLoop loop;
     SocketAddr addr(true,10002);
     EchoServer server(&loop,addr);

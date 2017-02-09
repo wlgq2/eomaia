@@ -66,7 +66,7 @@ void IOEventCtrl::waitAndRunHandle(int timeMs)
     {
         return ;
     }
-    for(int i=0;i<cnt;cnt++)
+    for(int i=0;i<cnt;i++)
     {
         int fd = activeEvents[i].data.fd;
         shared_ptr<IOEvent> ioEvent=  eventPool[fd].lock();
@@ -74,7 +74,5 @@ void IOEventCtrl::waitAndRunHandle(int timeMs)
         {
             ioEvent->handle(activeEvents[i].events);
         }
-
-
     }
 }

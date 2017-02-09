@@ -2,7 +2,7 @@
 #define AGILNET_SOCKET_ADDR
 
 #include <netinet/in.h>
-#include <string>
+#include <iostream>
 
 //#include <boost/algorithm/string.hpp>
 
@@ -25,6 +25,7 @@ public:
     void setAddr(struct sockaddr_in addr);
     struct sockaddr_in* getAddr();
     bool isValid();
+    std::string toString() const ;
 private:
     bool valid;
     struct sockaddr_in sockAddr;

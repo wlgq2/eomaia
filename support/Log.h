@@ -12,6 +12,13 @@
 #include <iostream>
 #include <map>
 
+
+#define   LogEable          true
+
+#define   LogOutput(a)      BOOST_LOG_TRIVIAL(a)
+
+
+
 namespace agilNet
 {
 namespace support

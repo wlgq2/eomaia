@@ -4,6 +4,9 @@
 #include <AtomicInt.h>
 #include <IOEventLoop.h>
 #include <TcpAccept.h>
+#include <map>
+
+#include <TcpConnect.h>
 
 namespace agilNet
 {
@@ -21,11 +24,15 @@ public:
     virtual void connectCallback(int sockfd,const SocketAddr& addr)=0;
     virtual void messageCallback()=0;
     virtual void writeCompletCallback() = 0;
+    void addConnect(std::string name,boost::shared_ptr<TcpConnect> connect);
+    void addConnect(std::string name,TcpConnect* connect);
 private:
-
+    void newConnected(int sockfd,const SocketAddr& addr);
     IOEventLoop* eventLoop;
     SocketAddr tcpAddr;
     boost::shared_ptr<TcpAccept> tcpAccept;
+
+    std::map<std::string,boost::shared_ptr<TcpConnect> >connectPool;
     AtomicInt8 isStart;
 };
 

@@ -79,3 +79,9 @@ bool SocketAddr::isValid()
 {
     return valid;
 }
+
+
+string SocketAddr::toString() const
+{
+    return SocketOperation::toString(sockAddr);
+}
