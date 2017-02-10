@@ -12,6 +12,7 @@ public:
     virtual void connectCallback(int sockfd,const agilNet::net::SocketAddr& addr);
     virtual void messageCallback(const agilNet::net::TcpConnect&, agilNet::net::Buffer&);
     virtual void writeCompletCallback() ;
+    virtual void connectCloseCallback(const agilNet::net::TcpConnect&);
 };
 
 #endif // AGILNET_DOME_ECHOSERVER

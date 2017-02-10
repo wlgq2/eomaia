@@ -1,22 +1,26 @@
 #include <TcpConnect.h>
 #include <boost/thread/thread.hpp>
 #include <Log.h>
+#include <iostream>
 
 
 using namespace agilNet::log;
 using namespace agilNet::net;
+using namespace std;
 
 
 TcpConnect::TcpConnect(IOEventLoop* l,struct sockaddr_in addr,int fd)
     :loop(l),
     socketAddr(addr),
+    name(socketAddr.toString()),
     socket(new Socket(fd)),
     event(new IOEvent(loop,fd))
 {
     loop->addEvent(event);
     event->enableReading(true);
     event->enableErrorEvent(true);
-    event->setReadFunc(boost::bind(&TcpConnect::readFunction,this));
+    event->setReadFunc(boost::bind(&TcpConnect::readEvent,this));
+    event->setCloseFunc(boost::bind(&TcpConnect::closeEvent,this));
 }
 
 TcpConnect::~TcpConnect()
@@ -32,18 +36,24 @@ void TcpConnect::setMessageCallback(boost::function<void (const TcpConnect&, Buf
     messageCallback = callback;
 }
 
-void TcpConnect::readFunction()
+void TcpConnect::setCloseCallback(boost::function<void (const TcpConnect&)> callback)
+{
+    closeCallback = callback;
+}
+
+void TcpConnect::readEvent()
 {
 
     int error= 0;
     int n = readBuf.readFromIO(event->getFd(), error);
     if (n > 0)
     {
-        messageCallback(getRefer(),readBuf);
+        if(messageCallback)
+            messageCallback(getRefer(),readBuf);
     }
     else if (n == 0)
     {
-        //handleClose();
+        closeEvent();
     }
     else
     {
@@ -52,6 +62,11 @@ void TcpConnect::readFunction()
     }
 }
 
+void TcpConnect::closeEvent()
+{
+    if(closeCallback)
+        closeCallback(getRefer());
+}
 
 const TcpConnect& TcpConnect::getRefer()
 {
@@ -61,4 +76,9 @@ const TcpConnect& TcpConnect::getRefer()
 const SocketAddr& TcpConnect::getAddr() const
 {
     return socketAddr;
+}
+
+string TcpConnect::getName() const
+{
+    return name;
 }

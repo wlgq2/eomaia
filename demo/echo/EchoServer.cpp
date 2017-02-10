@@ -15,7 +15,7 @@ EchoServer::EchoServer(IOEventLoop* loop,SocketAddr& addr)
 
 void EchoServer::connectCallback(int sockfd,const SocketAddr& addr)
 {
-    cout<<"new connect:"<<addr.toString()<<endl;
+    cout<<"new connect:"<<addr.toString() <<"<count>" <<getConnectCount()<<endl;
 }
 void EchoServer::messageCallback(const TcpConnect& tcpConnect, Buffer& buffer)
 {
@@ -27,4 +27,11 @@ void EchoServer::messageCallback(const TcpConnect& tcpConnect, Buffer& buffer)
 void EchoServer::writeCompletCallback()
 {
 
+}
+
+void EchoServer::connectCloseCallback(const TcpConnect& connect)
+{
+    string addr = connect.getAddr().toString();
+    cout<<"receive data form "<<addr<<endl;
+    LogOutput(info)<<"close connect : "<<addr;
 }

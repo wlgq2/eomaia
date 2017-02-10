@@ -24,9 +24,14 @@ public:
     virtual void connectCallback(int sockfd,const SocketAddr& addr)=0;
     virtual void messageCallback(const TcpConnect&, Buffer&)=0;
     virtual void writeCompletCallback() = 0;
+    virtual void connectCloseCallback(const TcpConnect&)=0;
+
     void addConnect(std::string name,boost::shared_ptr<TcpConnect> connect);
     void addConnect(std::string name,TcpConnect* connect);
     void removeConnect(std::string name);
+    long getConnectCount();
+
+
 private:
     void newConnected(int sockfd,const SocketAddr& addr);
     IOEventLoop* eventLoop;
@@ -34,6 +39,7 @@ private:
     boost::shared_ptr<TcpAccept> tcpAccept;
 
     std::map<std::string,boost::shared_ptr<TcpConnect> >connectPool;
+    void connectCloseEvent(const TcpConnect& connect);
     AtomicInt8 isStart;
 };
 

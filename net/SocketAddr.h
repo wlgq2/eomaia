@@ -27,6 +27,8 @@ public:
     struct sockaddr_in* getAddrPtr();
     bool isValid();
     std::string toString() const ;
+
+
 private:
     bool valid;
     struct sockaddr_in sockAddr;
