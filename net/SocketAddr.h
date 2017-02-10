@@ -23,7 +23,8 @@ public:
     SocketAddr(uint16_t port);
     ~SocketAddr();
     void setAddr(struct sockaddr_in addr);
-    struct sockaddr_in* getAddr();
+    struct sockaddr_in getAddr() const;
+    struct sockaddr_in* getAddrPtr();
     bool isValid();
     std::string toString() const ;
 private:

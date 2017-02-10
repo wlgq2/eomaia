@@ -35,5 +35,12 @@ Log* Log::getSingle()
 
 void Log:: write(Level level,const string& content )
 {
-    BOOST_LOG_TRIVIAL(fatal)<<severityMap[level]<<": "<<content;
+#if   LogEable
+    LogOutput(fatal)<<severityMap[level]<<": "<<content;
+#endif // LogEable
+}
+
+Log& Log::idleOutput()
+{
+    return getSingleRefer();
 }

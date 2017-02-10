@@ -16,8 +16,10 @@ TcpAccept::TcpAccept(IOEventLoop* loop,SocketAddr& addr)
 
 TcpAccept::~TcpAccept()
 {
+
     event->disableAll();
     event->removeFromLoop();
+    eventLoop->removeEvent(event);
 }
 
 

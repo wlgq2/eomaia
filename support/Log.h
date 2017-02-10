@@ -13,10 +13,13 @@
 #include <map>
 
 
-#define   LogEable          true
+#define         LogEable          1
 
-#define   LogOutput(a)      BOOST_LOG_TRIVIAL(a)
-
+#if   LogEable
+#define         LogOutput(a)      BOOST_LOG_TRIVIAL(a)
+#else
+#define         LogOutput(a)      Log::idleOutput()
+#endif // LogEable
 
 
 namespace agilNet
@@ -74,6 +77,7 @@ public :
         return *getSingle();
     }
 
+    static Log& idleOutput();
 private :
     Log();
     static const long long FileSize;

@@ -10,7 +10,7 @@ class EchoServer : public agilNet::net::TcpServer
 public:
     EchoServer(agilNet::net::IOEventLoop* loop,agilNet::net::SocketAddr& addr);
     virtual void connectCallback(int sockfd,const agilNet::net::SocketAddr& addr);
-    virtual void messageCallback();
+    virtual void messageCallback(const agilNet::net::TcpConnect&, agilNet::net::Buffer&);
     virtual void writeCompletCallback() ;
 };
 

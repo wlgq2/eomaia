@@ -70,10 +70,16 @@ void SocketAddr::setAddr(struct sockaddr_in addr)
     sockAddr = addr;
     valid = true;
 }
-struct sockaddr_in* SocketAddr::getAddr()
+struct sockaddr_in SocketAddr::getAddr() const
 {
-    return &sockAddr;
+    return sockAddr;
 }
+struct sockaddr_in* SocketAddr::getAddrPtr()
+{
+
+    return &sockAddr;
+};
+
 
 bool SocketAddr::isValid()
 {

@@ -74,5 +74,9 @@ void IOEventCtrl::waitAndRunHandle(int timeMs)
         {
             ioEvent->handle(activeEvents[i].events);
         }
+        else
+        {
+            deleteEvent(fd);
+        }
     }
 }

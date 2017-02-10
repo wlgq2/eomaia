@@ -19,7 +19,7 @@ int Socket::getFd()
 }
 void Socket::bind(SocketAddr& addr)
 {
-    SocketOperation::bind(socketFd,addr.getAddr());
+    SocketOperation::bind(socketFd,addr.getAddrPtr());
 }
 int Socket::accept(SocketAddr& addr)
 {

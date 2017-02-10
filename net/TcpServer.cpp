@@ -16,11 +16,13 @@ TcpServer::TcpServer(IOEventLoop* loop,SocketAddr& addr)
     isStart(false)
 {
     tcpAccept->setNewConnectCallback(boost::bind(&TcpServer::newConnected,this,_1,_2));
+
 }
 
 
 TcpServer::~TcpServer()
 {
+
 }
 
 void TcpServer::start()
@@ -32,6 +34,11 @@ void TcpServer::start()
 void TcpServer::newConnected(int sockfd,const SocketAddr& addr)
 {
     LogOutput(info)<<"new tcp connect addr:"<<addr.toString();
+
+    shared_ptr<TcpConnect> tcpConnect(new TcpConnect(eventLoop,addr.getAddr(),sockfd));
+    addConnect(addr.toString(),tcpConnect);
+    tcpConnect->setMessageCallback(boost::bind(&TcpServer::messageCallback,this,_1,_2));
+
     connectCallback(sockfd,addr);
 }
 
@@ -43,4 +50,9 @@ void TcpServer::addConnect(string name,TcpConnect* connect)
 {
     shared_ptr<TcpConnect> connectPtr(connect);
     addConnect(name,connectPtr);
+}
+
+void TcpServer::removeConnect(string name)
+{
+    connectPool.erase(name);
 }

@@ -22,10 +22,11 @@ public:
     virtual ~TcpServer();
     void start();
     virtual void connectCallback(int sockfd,const SocketAddr& addr)=0;
-    virtual void messageCallback()=0;
+    virtual void messageCallback(const TcpConnect&, Buffer&)=0;
     virtual void writeCompletCallback() = 0;
     void addConnect(std::string name,boost::shared_ptr<TcpConnect> connect);
     void addConnect(std::string name,TcpConnect* connect);
+    void removeConnect(std::string name);
 private:
     void newConnected(int sockfd,const SocketAddr& addr);
     IOEventLoop* eventLoop;

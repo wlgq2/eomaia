@@ -38,10 +38,16 @@ void Buffer::ensureWritableBytes(size_t len)
     }
 }
 
-uint8_t Buffer::writableBytes()
+uint32_t Buffer::writableBytes()
 {
     return buffer.size() - writeIndex;
 }
+
+uint32_t Buffer::readableBytes() const
+{
+    return writeIndex - readIndex;
+}
+
 int Buffer::readFromIO(int fd,int& errorNo)
 {
     char extrabuf[65536];
@@ -68,4 +74,12 @@ int Buffer::readFromIO(int fd,int& errorNo)
         append(extrabuf, n - writable);
     }
     return n;
+}
+
+
+void Buffer::swap(Buffer& rhs)
+{
+    buffer.swap(rhs.buffer);
+    std::swap(readIndex, rhs.readIndex);
+    std::swap(writeIndex, rhs.writeIndex);
 }
