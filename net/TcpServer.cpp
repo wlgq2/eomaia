@@ -3,7 +3,7 @@
 #include <Log.h>
 
 
-using namespace agilNet::support;
+using namespace agilNet::log;
 using namespace agilNet::net;
 using namespace std;
 using namespace boost;

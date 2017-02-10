@@ -5,7 +5,7 @@
 
 
 using namespace std;
-using namespace agilNet::support;
+using namespace agilNet::log;
 
 bool Log::isInit = false;
 Log* Log::single = new Log;
@@ -37,7 +37,7 @@ void Log:: write(Level level,const string& content )
 {
 #if   LogEable
     LogOutput(fatal)<<severityMap[level]<<": "<<content;
-#endif // LogEable
+#endif
 }
 
 Log& Log::idleOutput()

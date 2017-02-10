@@ -3,7 +3,7 @@
 #include <Log.h>
 
 
-using namespace agilNet::support;
+using namespace agilNet::log;
 using namespace agilNet::net;
 
 
@@ -15,6 +15,7 @@ TcpConnect::TcpConnect(IOEventLoop* l,struct sockaddr_in addr,int fd)
 {
     loop->addEvent(event);
     event->enableReading(true);
+    event->enableErrorEvent(true);
     event->setReadFunc(boost::bind(&TcpConnect::readFunction,this));
 }
 

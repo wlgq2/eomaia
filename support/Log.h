@@ -18,13 +18,12 @@
 #if   LogEable
 #define         LogOutput(a)      BOOST_LOG_TRIVIAL(a)
 #else
-#define         LogOutput(a)      Log::idleOutput()
+#define         LogOutput(a)      agilNet::log::Log::idleOutput()
 #endif // LogEable
-
 
 namespace agilNet
 {
-namespace support
+namespace log
 {
 
 class Log
@@ -39,11 +38,17 @@ public :
         error,
         fatal
     };
+
     void write(Level level,const std::string& content);
     void write(Level level,const char* content)
     {
         std::string str(content);
         write(level,str);
+    }
+
+    Log& operator<<( std::ostream& (*op) (std::ostream&))
+    {
+        return getSingleRefer();
     }
 
     Log& operator<<(const char* charPtr)
@@ -59,6 +64,7 @@ public :
         write(fatal,stream.str());
         return getSingleRefer();
     }
+
     Log& operator<<(const double num)
     {
         std::stringstream stream;
@@ -66,11 +72,21 @@ public :
         write(fatal,stream.str());
         return getSingleRefer();
     }
+
+    Log& operator<<(const float num)
+    {
+        std::stringstream stream;
+        stream<<num;
+        write(fatal,stream.str());
+        return getSingleRefer();
+    }
+
     Log& operator<<(const std::string& str)
     {
         write(fatal,str);
         return getSingleRefer();
     }
+
     static Log* getSingle();
     static Log& getSingleRefer()
     {
@@ -85,6 +101,10 @@ private :
     static bool isInit;
     std::map<Level,std::string> severityMap;
 };
+
+
+
+
 }
 }
 #endif // AGILNET_SUPPORT_LOG

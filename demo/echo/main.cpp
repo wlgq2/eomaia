@@ -4,7 +4,7 @@
 #include <IOEventLoop.h>
 
 using namespace std;
-using namespace agilNet::support;
+using namespace agilNet::log;
 using namespace agilNet::net;
 
 int main()

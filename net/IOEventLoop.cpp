@@ -1,8 +1,29 @@
 #include <IOEventLoop.h>
 
+#include <signal.h>
+#include <Log.h>
+#include <iostream>
 
+using namespace std;
+using namespace agilNet::log;
 using namespace agilNet::net;
 using namespace boost;
+
+//这个类初始化后避免程序被signal信号意外退出
+class IgnoreSigPipe
+{
+private:
+    IgnoreSigPipe()
+    {
+        ::signal(SIGPIPE, SIG_IGN);
+        //endl;
+    }
+    static IgnoreSigPipe* singnal ;
+};
+
+IgnoreSigPipe* IgnoreSigPipe::singnal = new IgnoreSigPipe();
+
+
 
 const int IOEventLoop::PollTimeMs = 3000;
 IOEventLoop::IOEventLoop()

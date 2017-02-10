@@ -4,7 +4,7 @@
 #include <unistd.h>
 
 using namespace agilNet::net;
-using namespace agilNet::support;
+using namespace agilNet::log;
 
 Epoll::Epoll()
     :epollFd(epoll_create1(EPOLL_CLOEXEC))

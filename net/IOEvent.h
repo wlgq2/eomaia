@@ -17,6 +17,7 @@ public:
     static const int noneEventFlag;
     static const int readEventFlag;
     static const int writeEventFlag;
+    static const int errorEventFlag;
 
     IOEvent(IOEventLoop* loop,int fd);
     ~IOEvent();
@@ -25,6 +26,7 @@ public:
 
     void enableReading(bool isEnable);
     void enableWriting(bool isEnable) ;
+    void enableErrorEvent(bool isEnable) ;
     void disableAll();
     bool isWriting();
     bool isReading();

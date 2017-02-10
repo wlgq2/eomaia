@@ -11,12 +11,14 @@ using namespace boost;
 const int IOEvent::noneEventFlag = 0;
 const int IOEvent::readEventFlag = EPOLLIN | EPOLLPRI;
 const int IOEvent::writeEventFlag = EPOLLOUT;
+const int IOEvent::errorEventFlag = EPOLLERR;
 
 IOEvent::IOEvent(IOEventLoop* loop,int fd)
     :eventLoop(loop),
     eventFd(fd),
     events(0)
 {
+
 }
 
 IOEvent::~IOEvent()
@@ -40,6 +42,16 @@ void IOEvent::enableWriting(bool isEnable)
         events &= ~writeEventFlag;
     update();
 }
+
+void IOEvent::enableErrorEvent(bool isEnable)
+{
+    if(isEnable)
+        events |= errorEventFlag;
+    else
+        events &= ~errorEventFlag;
+    update();
+}
+
 
 void IOEvent::disableAll()
 {
