@@ -55,6 +55,8 @@
 		<Unit filename="net/IOEventCtrl.h" />
 		<Unit filename="net/IOEventLoop.cpp" />
 		<Unit filename="net/IOEventLoop.h" />
+		<Unit filename="net/IOEventLoopThread.cpp" />
+		<Unit filename="net/IOEventLoopThread.h" />
 		<Unit filename="net/Socket.cpp" />
 		<Unit filename="net/Socket.h" />
 		<Unit filename="net/SocketAddr.cpp" />
@@ -72,6 +74,10 @@
 		<Unit filename="support/Log.cpp" />
 		<Unit filename="support/Log.h" />
 		<Unit filename="support/Mutex.h" />
+		<Unit filename="support/Thread.cpp" />
+		<Unit filename="support/Thread.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Extensions>
 			<code_completion />
 			<debugger />
