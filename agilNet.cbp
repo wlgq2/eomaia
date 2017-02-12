@@ -57,6 +57,8 @@
 		<Unit filename="net/IOEventLoop.h" />
 		<Unit filename="net/IOEventLoopThread.cpp" />
 		<Unit filename="net/IOEventLoopThread.h" />
+		<Unit filename="net/IOEventLoopThreadPool.cpp" />
+		<Unit filename="net/IOEventLoopThreadPool.h" />
 		<Unit filename="net/Socket.cpp" />
 		<Unit filename="net/Socket.h" />
 		<Unit filename="net/SocketAddr.cpp" />
