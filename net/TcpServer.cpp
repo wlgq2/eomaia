@@ -38,6 +38,7 @@ void TcpServer::newConnected(int sockfd,const SocketAddr& addr)
     addConnect(addr.toString(),tcpConnect);
     tcpConnect->setMessageCallback(boost::bind(&TcpServer::messageCallback,this,_1,_2));
     tcpConnect->setCloseCallback(boost::bind(&TcpServer::connectCloseEvent,this,_1));
+    tcpConnect->connectedHandle();
     connectCallback(sockfd,addr);
 }
 
@@ -67,4 +68,37 @@ void TcpServer::connectCloseEvent(const TcpConnect& connect)
 long TcpServer::getConnectCount()
 {
     return connectPool.size();
+}
+
+bool TcpServer::haveConect(std::string name)
+{
+     return (connectPool.find(name) != connectPool.end());
+}
+
+void TcpServer::write(TcpConnect& connect,void* data,uint32_t length)
+{
+    connect.writeInLoop(data,length);
+}
+
+void TcpServer::write(shared_ptr<TcpConnect> connect,void* data,uint32_t length)
+{
+    connect->writeInLoop(data,length);
+}
+
+
+void TcpServer::write(string name,void* data,uint32_t length)
+{
+    if(haveConect(name))
+    {
+        write(connectPool[name],data,length);
+    }
+    else
+    {
+        LogOutput(info)<<"try write no exist connect";
+    }
+}
+
+void TcpServer::write(string name,string data)
+{
+    write(name,&(*data.begin()),data.length());
 }

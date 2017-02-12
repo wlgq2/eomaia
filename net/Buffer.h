@@ -26,6 +26,11 @@ public:
         return  readableBytes()>0?true:false;
     }
 
+    bool isEmpty()
+    {
+        return !isReadble();
+    }
+
     void append(const char*  data, std::size_t len);
     void ensureWritableBytes(std::size_t len);
 

@@ -28,9 +28,14 @@ public:
 
     void addConnect(std::string name,boost::shared_ptr<TcpConnect> connect);
     void addConnect(std::string name,TcpConnect* connect);
+    bool haveConect(std::string name);
     void removeConnect(std::string name);
     long getConnectCount();
 
+    void write(TcpConnect& connect,void* data,uint32_t length);
+    void write(std::string name,void* data,uint32_t length);
+    void write(boost::shared_ptr<TcpConnect> connect,void* data,uint32_t length);
+    void write(std::string name,std::string data);
 
 private:
     void newConnected(int sockfd,const SocketAddr& addr);

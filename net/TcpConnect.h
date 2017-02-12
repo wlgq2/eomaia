@@ -19,11 +19,14 @@ public:
     ~TcpConnect();
     void setMessageCallback(boost::function<void (const TcpConnect&, Buffer&)> callback);
     void setCloseCallback(boost::function<void (const TcpConnect&)> callback);
-
+    void setWriteCompletCallback(boost::function<void (const TcpConnect&)> callback);
 
     const SocketAddr& getAddr() const;
 
     std::string getName() const;
+
+    void writeInLoop(const void* data, uint32_t len);
+    void connectedHandle();
 private:
     IOEventLoop* loop;
     SocketAddr socketAddr;
@@ -33,15 +36,20 @@ private:
 
     void readEvent();
     void closeEvent();
+    void writeEvent();
     boost::function<void (const TcpConnect&, Buffer&)> messageCallback;
     boost::function<void (const TcpConnect&)> closeCallback;
 
-    Buffer readBuf;
+    boost::function<void (const TcpConnect&)> writeCompleteCallback;
 
+    Buffer readBuf;
+    Buffer writeBuf;
     const TcpConnect& getRefer();
 
-    //boost::function<void (const TcpConnect&, Buffer*)> MessageCallback;
-    //boost::function<void (const TcpConnect&, Buffer*)> MessageCallback;
+
+    int state;
+    enum ConnectState { Disconnected, Connecting, Connected, Disconnecting };
+
 };
 
 }

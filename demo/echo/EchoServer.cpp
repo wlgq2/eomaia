@@ -23,6 +23,7 @@ void EchoServer::messageCallback(const TcpConnect& tcpConnect, Buffer& buffer)
     string data = buffer.readAllAsString();
     cout<<"receive data form "<<addr<<":"<<data<<endl;
     LogOutput(info)<<"receive data form "<<addr<<":"<<data;
+    write(tcpConnect.getName(),data);
 }
 void EchoServer::writeCompletCallback()
 {
