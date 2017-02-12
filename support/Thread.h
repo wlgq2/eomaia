@@ -18,7 +18,7 @@ public :
     //Thread 类总是被继承，虚析构会安全。
     virtual ~Thread();
     void start();
-    //用boost::thread 线程指针地址当id使用,如果未被初始化，则返回-1。
+    //用boost::thread 线程指针地址当id使用。
     long long getThreadPtrId();
 
     bool isStarted();

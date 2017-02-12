@@ -19,31 +19,32 @@ Thread::~Thread()
 
 void Thread::start()
 {
-    started = true;
-    condtion.notify();
+    {
+        MutexGuard mutexGuard(mutex);
+        started = true;
+        condtion.notify();
+    }
 }
 
 
 void Thread::beginRun()
 {
-    if(!started)
     {
+        MutexGuard mutexGuard(mutex);
         //如果在wait函数执行前执行notify则不会有效，所以需要先判断started状态。
-        condtion.wait();
+        if(!started)
+        {
+            //如果在这里还未执行wait时，notify被执行，则这里会永远阻塞。所以需要加锁
+            condtion.wait();
+        }
     }
     run();
 }
 
 long long Thread::getThreadPtrId()
 {
-    if(NULL == thread.get())
-    {
-        return -1;
-    }
-    else
-    {
-        return (long long)(thread.get());
-    }
+
+    return (long long)(thread.get());
 }
 
 bool Thread::isStarted()
