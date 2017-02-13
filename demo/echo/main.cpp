@@ -10,13 +10,10 @@ using namespace agilNet::net;
 
 int main()
 {
-    //IOEventLoopThread thread;
-    //thread.start();
-    //thread.getLoopInThread();
-
     IOEventLoop loop;
     SocketAddr addr(true,10002);
     EchoServer server(&loop,addr);
+    server.setThreadPoolSize(3);
     server.start();
     loop.run();
 

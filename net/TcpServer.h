@@ -7,6 +7,8 @@
 #include <map>
 
 #include <TcpConnect.h>
+#include <IOEventLoopThreadPool.h>
+
 
 namespace agilNet
 {
@@ -36,7 +38,7 @@ public:
     void write(std::string name,void* data,uint32_t length);
     void write(boost::shared_ptr<TcpConnect> connect,void* data,uint32_t length);
     void write(std::string name,std::string data);
-
+    void setThreadPoolSize(uint16_t num);
 private:
     void newConnected(int sockfd,const SocketAddr& addr);
     IOEventLoop* eventLoop;
@@ -46,6 +48,8 @@ private:
     std::map<std::string,boost::shared_ptr<TcpConnect> >connectPool;
     void connectCloseEvent(const TcpConnect& connect);
     AtomicInt8 isStart;
+
+    boost::shared_ptr<IOEventLoopThreadPool> threadPool;
 };
 
 }

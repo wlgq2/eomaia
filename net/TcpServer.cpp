@@ -13,7 +13,8 @@ TcpServer::TcpServer(IOEventLoop* loop,SocketAddr& addr)
     :eventLoop(loop),
     tcpAddr(addr),
     tcpAccept(new TcpAccept(loop,addr)),
-    isStart(false)
+    isStart(false),
+    threadPool(new IOEventLoopThreadPool(loop))
 {
     tcpAccept->setNewConnectCallback(boost::bind(&TcpServer::newConnected,this,_1,_2));
 }
@@ -24,8 +25,16 @@ TcpServer::~TcpServer()
 
 }
 
+
+void TcpServer::setThreadPoolSize(uint16_t num)
+{
+    threadPool->setThreadNum(num);
+}
+
+
 void TcpServer::start()
 {
+    threadPool->init();
     tcpAccept->listen();
     isStart.set(true);
 }
@@ -34,7 +43,8 @@ void TcpServer::newConnected(int sockfd,const SocketAddr& addr)
 {
     LogOutput(info)<<"new tcp connect addr:"<<addr.toString()<<"<cnt>:"<<getConnectCount();
 
-    shared_ptr<TcpConnect> tcpConnect(new TcpConnect(eventLoop,addr.getAddr(),sockfd));
+    IOEventLoop* loop = threadPool->getOneLoopFromPool();
+    shared_ptr<TcpConnect> tcpConnect(new TcpConnect(loop,addr.getAddr(),sockfd));
     addConnect(addr.toString(),tcpConnect);
     tcpConnect->setMessageCallback(boost::bind(&TcpServer::messageCallback,this,_1,_2));
     tcpConnect->setCloseCallback(boost::bind(&TcpServer::connectCloseEvent,this,_1));

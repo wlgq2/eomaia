@@ -17,6 +17,7 @@ void IOEventLoopThreadPool::init()
     for(int i=0;i<threadNum;i++)
     {
         shared_ptr<IOEventLoopThread> thread(new IOEventLoopThread());
+        thread->start();
         threadPool.push_back(thread);
         eventLoopPool.push_back(thread->getLoopInThread());
     }

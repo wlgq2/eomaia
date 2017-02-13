@@ -57,14 +57,11 @@ bool Epoll::removeEvent(IOEvent* ioEvent)
 bool Epoll::removeEvent(int fd)
 {
 
-    std::cout<<"wb yunx "<<std::endl;
     if(epollCtrl(EPOLL_CTL_DEL,fd,0)<0)
     {
-        std::cout<<"fan hui l error"<<std::endl;
         Log::getSingle()->write(Log::error,"delete epoll error.");
         return false;
     }
-    std::cout<<"no error"<<std::endl;
     return true;
 }
 bool Epoll::modifyEvent(IOEvent* ioEvent)
