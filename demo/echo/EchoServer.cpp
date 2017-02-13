@@ -33,6 +33,6 @@ void EchoServer::writeCompletCallback()
 void EchoServer::connectCloseCallback(const TcpConnect& connect)
 {
     string addr = connect.getAddr().toString();
-    cout<<"receive data form "<<addr<<endl;
+    cout<<"close connect :"<<addr<<endl;
     LogOutput(info)<<"close connect : "<<addr;
 }

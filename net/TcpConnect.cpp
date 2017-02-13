@@ -27,7 +27,6 @@ TcpConnect::~TcpConnect()
 {
     event->disableAll();
     event->removeFromLoop();
-    loop->removeEvent(event);
 }
 
 

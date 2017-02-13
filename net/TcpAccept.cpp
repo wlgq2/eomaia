@@ -19,7 +19,6 @@ TcpAccept::~TcpAccept()
 
     event->disableAll();
     event->removeFromLoop();
-    eventLoop->removeEvent(event);
 }
 
 
