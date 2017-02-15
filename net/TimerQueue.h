@@ -33,6 +33,8 @@ private:
 
     int createTimeFd();
     void timerHandle();
+    bool needResetTimer(std::multimap<uint64_t,boost::shared_ptr<Timer> > times,boost::shared_ptr<Timer> timer);
+    void resetTimer(boost::shared_ptr<Timer> timer);
 };
 
 }

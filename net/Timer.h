@@ -19,8 +19,10 @@ public:
     Timer(uint32_t interval,boost::function<void ()>* funcHandle);
     struct timeval getTimeOut();
     uint64_t getTimeOutMSencond();
+    struct timespec getTimeInterval();
     void update();
     void setHandle(boost::shared_ptr<boost::function<void ()> >);
+
 private:
     uint32_t intervalMs;
     struct timeval now;

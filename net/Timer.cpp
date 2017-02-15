@@ -20,6 +20,15 @@ struct timeval Timer::getTimeOut()
     return timeOut;
 }
 
+struct timespec Timer::getTimeInterval()
+{
+    struct timespec timerInterval ;
+    timerInterval.tv_sec =intervalMs/1000;
+    timerInterval.tv_nsec = (intervalMs%1000)*1000000;
+    return timerInterval;
+}
+
+
 void Timer::update()
 {
     struct  timezone   tz;

@@ -1,7 +1,13 @@
 # agilNet
 一个基于reactor模式+epoll复用机制的C++网络库，支持one loop per thread.  参考学习陈硕的muduo
 
-
+##零.代码编译
+目前是配置codeblocks工程开发编译/调试。<br>
+1.apt-get install gcc
+2.apt-get install g++
+3.apt-get install libboost-all-dev
+4.apt-get install codeblocks
+5.用codeblocks打开工程，点击build即可。
 
 ##一.目录结构
 1.`demo` 相关测试例程，目前只包括一个回显服务器 <br>
