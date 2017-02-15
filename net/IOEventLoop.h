@@ -22,6 +22,7 @@ public :
     void removeEvent(int fd);
     void run();
     void runInLoop(boost::function<void ()> func);
+
 private:
     static const int PollTimeMs;
     Mutex mutex;

@@ -71,6 +71,10 @@
 		<Unit filename="net/TcpConnect.h" />
 		<Unit filename="net/TcpServer.cpp" />
 		<Unit filename="net/TcpServer.h" />
+		<Unit filename="net/Timer.cpp" />
+		<Unit filename="net/Timer.h" />
+		<Unit filename="net/TimerQueue.cpp" />
+		<Unit filename="net/TimerQueue.h" />
 		<Unit filename="support/AtomicInt.h" />
 		<Unit filename="support/Condition.h" />
 		<Unit filename="support/Log.cpp" />
