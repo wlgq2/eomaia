@@ -41,11 +41,6 @@ void Thread::beginRun()
     run();
 }
 
-long long Thread::getThreadPtrId()
-{
-
-    return (long long)(thread.get());
-}
 
 bool Thread::isStarted()
 {
@@ -55,4 +50,10 @@ bool Thread::isStarted()
 void Thread::sleepSeconds(int seconds)
 {
     boost::this_thread::sleep(boost::posix_time::seconds(seconds));
+}
+
+
+boost::thread::id Thread::getNowThreadId()
+{
+    return boost::this_thread::get_id();
 }

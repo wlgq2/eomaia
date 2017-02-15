@@ -25,6 +25,7 @@ IOEventLoop* IOEventLoopThread::getLoopInThread()
     }
     return loop;
 }
+
 void IOEventLoopThread::run()
 {
     IOEventLoop loop;

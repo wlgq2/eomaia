@@ -7,8 +7,6 @@
 #include <Log.h>
 
 
-
-
 namespace agilNet
 {
 
@@ -33,7 +31,7 @@ public:
 
     void lock()
     {
-        if(pthread_mutex_lock(&mutex)<0);
+        if(pthread_mutex_lock(&mutex)<0)
         {
             agilNet::log::Log::getSingle()->write(agilNet::log::Log::error,"lock mutex error .");
         }

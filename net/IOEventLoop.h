@@ -2,6 +2,8 @@
 #define AGILNET_NET_IOEVENTLOOP
 
 #include <IOEventCtrl.h>
+#include <boost/thread.hpp>
+#include <Mutex.h>
 
 namespace agilNet
 {
@@ -19,9 +21,18 @@ public :
     void modifyEvent(int fd);
     void removeEvent(int fd);
     void run();
+    void runInLoop(boost::function<void ()> func);
 private:
     static const int PollTimeMs;
+    Mutex mutex;
     IOEventCtrl* eventCtrl;
+    boost::thread::id thisTheadId;
+    std::vector<boost::function<void ()> > functions;
+    void addFunInLoop(boost::function<void ()> func);
+
+    bool inThisThread();
+    void runAllFunctionInLoop();
+
 };
 }
 }

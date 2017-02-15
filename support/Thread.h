@@ -18,9 +18,9 @@ public :
     //Thread 类总是被继承，虚析构会安全。
     virtual ~Thread();
     void start();
-    //用boost::thread 线程指针地址当id使用。
-    long long getThreadPtrId();
 
+    //
+    static boost::thread::id getNowThreadId();
     bool isStarted();
     //该函数为实际线程函数，子类需要实现。
     virtual void run()=0;
