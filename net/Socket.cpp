@@ -1,5 +1,5 @@
-#include <Socket.h>
-#include <SocketOperation.h>
+#include <net/Socket.h>
+#include <net/SocketOperation.h>
 
 using namespace agilNet::net;
 

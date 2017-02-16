@@ -1,9 +1,11 @@
 #ifndef AGILNET_NET_IOEVENTLOOP
 #define AGILNET_NET_IOEVENTLOOP
 
-#include <IOEventCtrl.h>
+
 #include <boost/thread.hpp>
-#include <Mutex.h>
+#include <support/Mutex.h>
+#include <net/TimerQueue.h>
+#include <net/IOEventCtrl.h>
 
 namespace agilNet
 {
@@ -22,12 +24,16 @@ public :
     void removeEvent(int fd);
     void run();
     void runInLoop(boost::function<void ()> func);
+    void runOniceAfter(boost::function<void ()> callback,uint32_t interval);
+    void runEveryInterval(boost::function<void ()> callback,uint32_t interval);
 
 private:
     static const int PollTimeMs;
     Mutex mutex;
     IOEventCtrl* eventCtrl;
     boost::thread::id thisTheadId;
+    boost::shared_ptr<TimerQueue> timerQueue;
+
     std::vector<boost::function<void ()> > functions;
     void addFunInLoop(boost::function<void ()> func);
 

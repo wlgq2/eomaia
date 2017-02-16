@@ -1,8 +1,8 @@
-#include <TimerQueue.h>
+#include <net/TimerQueue.h>
 
-#include <IOEventLoop.h>
+#include <net/IOEventLoop.h>
 #include <sys/timerfd.h>
-#include <Log.h>
+#include <support/Log.h>
 
 using namespace agilNet::net;
 using namespace boost;
@@ -27,20 +27,89 @@ TimerQueue::~TimerQueue()
 }
 
 
-void TimerQueue::runOniceAfter(int interval,function<void ()>* handle)
+void TimerQueue::runOniceAfter(function<void ()> handle,int interval)
 {
     MutexGuard lock(mutex);
-    addOniceTimer(interval,handle);
+    addOniceTimer(handle,interval);
 }
 
-void TimerQueue::addOniceTimer(uint32_t interval,function<void ()>* handle)
+void TimerQueue::addOniceTimer(function<void ()> handle,uint32_t interval)
 {
     shared_ptr<Timer> timer(new Timer(interval,handle));
-    oniceTimers.insert(pair<uint64_t,shared_ptr<Timer> >(timer->getTimeOutMSencond(),timer));
-    if(needResetTimer(oniceTimers,timer))
+    oniceTimers.insert(pair<uint64_t,shared_ptr<Timer> >(timer->getTimeOutMSecond(),timer));
+    if(needResetTimer(oniceTimers,timer) && needResetTimer(everytimers,timer))
     {
         resetTimer(timer);
     }
+}
+
+
+void TimerQueue::runEveryInterval(boost::function<void ()> handle,int interval)
+{
+    MutexGuard lock(mutex);
+    addEveryTimer(handle,interval);
+}
+
+void TimerQueue::addEveryTimer(boost::function<void ()> handle,uint32_t interval)
+{
+    shared_ptr<Timer> timer(new Timer(interval,handle));
+    everytimers.insert(pair<uint64_t,shared_ptr<Timer> >(timer->getTimeOutMSecond(),timer));
+    if(needResetTimer(oniceTimers,timer) && needResetTimer(everytimers,timer))
+    {
+        resetTimer(timer);
+    }
+}
+
+bool TimerQueue::needResetTimer(multimap<uint64_t,shared_ptr<Timer> > times , shared_ptr<Timer> timer)
+{
+    if(times.empty())
+        return true;
+
+    multimap<uint64_t,shared_ptr<Timer> >::iterator it = times.begin();
+    //如果触发时间小于新增定时器时间，则不需要重置定时器。
+    if(it->first < timer->getTimeOutMSecond())
+    {
+        return false;
+    }
+    //如果键值已存在，则不需要重置定时器
+    if(times.count( timer->getTimeOutMSecond())>1)
+    {
+        return false;
+    }
+    return true;
+}
+
+void TimerQueue::timerHandle()
+{
+    MutexGuard lock(mutex);
+    readTimerfd();
+    multimap<uint64_t,shared_ptr<Timer> >::iterator it;
+
+    //map是基于平衡树实现，所以只需遍历到当前触发定时器，退出即可。
+    for(it=oniceTimers.begin();it!=oniceTimers.end();it++)
+    {
+        if(it->first > Timer::getNowTimeMSecond())
+        {
+            break;
+        }
+        it->second->timerHandle();
+        oniceTimers.erase(it);
+    }
+
+
+    for(it=everytimers.begin();it!=everytimers.end();it++)
+    {
+        if(it->first > Timer::getNowTimeMSecond())
+        {
+            break;
+        }
+        it->second->timerHandle();
+        shared_ptr<Timer> timer = it->second;
+        timer->update();
+        everytimers.insert(pair<uint64_t,shared_ptr<Timer> >(timer->getTimeOutMSecond(),timer));
+        everytimers.erase(it);
+    }
+    resetTimer();
 }
 
 void TimerQueue::resetTimer(shared_ptr<Timer> timer)
@@ -57,6 +126,44 @@ void TimerQueue::resetTimer(shared_ptr<Timer> timer)
     }
 }
 
+
+void TimerQueue::resetTimer()
+{
+    if(oniceTimers.empty())
+    {
+        if(!everytimers.empty())
+        {
+            multimap<uint64_t,shared_ptr<Timer> >::iterator it;
+            it = everytimers.begin();
+            resetTimer(it->second);
+        }
+    }
+    else
+    {
+        if(everytimers.empty())
+        {
+            multimap<uint64_t,shared_ptr<Timer> >::iterator it;
+            it = oniceTimers.begin();
+            resetTimer(it->second);
+        }
+        else
+        {
+            multimap<uint64_t,shared_ptr<Timer> >::iterator it1;
+            multimap<uint64_t,shared_ptr<Timer> >::iterator it2;
+            it1 = everytimers.begin();
+            it2 = oniceTimers.begin();
+            if(it1->second->getTimeOutMSecond() < it2->second->getTimeOutMSecond())
+            {
+                resetTimer(it1->second);
+            }
+            else
+            {
+                resetTimer(it2->second);
+            }
+        }
+    }
+}
+
 int TimerQueue::createTimeFd()
 {
   int fd = ::timerfd_create(CLOCK_MONOTONIC,TFD_NONBLOCK | TFD_CLOEXEC);
@@ -67,23 +174,13 @@ int TimerQueue::createTimeFd()
   return fd;
 }
 
-void TimerQueue::timerHandle()
+void TimerQueue::readTimerfd()
 {
-    MutexGuard lock(mutex);
+    uint64_t cnt;
+    int n = ::read(timerFd, &cnt, sizeof cnt);
+    if (n != sizeof cnt)
+    {
+        LogOutput(error) << "TimerQueue::handleRead() reads " << n << " bytes instead of 8";
+    }
 }
 
-bool TimerQueue::needResetTimer(multimap<uint64_t,shared_ptr<Timer> > times , shared_ptr<Timer> timer)
-{
-    multimap<uint64_t,shared_ptr<Timer> >::iterator it = times.begin();
-    //如果触发时间小于新增定时器时间，则不需要重置定时器。
-    if(it->first < timer->getTimeOutMSencond())
-    {
-        return false;
-    }
-    //如果键值已存在，则不需要重置定时器
-    if(times.count( timer->getTimeOutMSencond())>1)
-    {
-        return false;
-    }
-    return true;
-}

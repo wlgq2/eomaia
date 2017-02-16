@@ -1,9 +1,11 @@
-#include <IOEventLoop.h>
+#include <net/IOEventLoop.h>
 
 #include <signal.h>
-#include <Log.h>
+#include <support/Log.h>
+#include <support/Thread.h>
+
 #include <iostream>
-#include <Thread.h>
+
 
 using namespace std;
 using namespace agilNet::log;
@@ -28,9 +30,12 @@ IgnoreSigPipe* IgnoreSigPipe::singnal = new IgnoreSigPipe();
 
 
 const int IOEventLoop::PollTimeMs = 3000;
+
+
 IOEventLoop::IOEventLoop()
     :eventCtrl(new IOEventCtrl(this)),
-    thisTheadId(Thread::getNowThreadId())
+    thisTheadId(Thread::getNowThreadId()),
+    timerQueue(new TimerQueue(this))
 {
 
 }
@@ -114,4 +119,15 @@ bool IOEventLoop::inThisThread()
 {
 
     return (thisTheadId == Thread::getNowThreadId());
+}
+
+void IOEventLoop::runOniceAfter(boost::function<void ()> callback,uint32_t interval)
+{
+    timerQueue->runOniceAfter(callback,interval);
+
+}
+
+void IOEventLoop::runEveryInterval(boost::function<void ()> callback,uint32_t interval)
+{
+    timerQueue->runEveryInterval(callback,interval);
 }

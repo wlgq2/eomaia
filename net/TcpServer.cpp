@@ -1,6 +1,6 @@
-#include <TcpServer.h>
+#include <net/TcpServer.h>
 #include <boost/thread/thread.hpp>
-#include <Log.h>
+#include <support/Log.h>
 
 
 using namespace agilNet::log;

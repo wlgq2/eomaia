@@ -1,7 +1,7 @@
-#include <Buffer.h>
+#include <net/Buffer.h>
 #include <errno.h>
 #include <sys/uio.h>
-#include <SocketOperation.h>
+#include <net/SocketOperation.h>
 
 
 using namespace agilNet::net;

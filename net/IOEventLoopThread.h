@@ -1,9 +1,10 @@
 #ifndef AGILNET_IOEVENTLOOPTHREAD
 #define AGILNET_IOEVENTLOOPTHREAD
 
-#include <Thread.h>
-#include <IOEventLoop.h>
-#include <Condition.h>
+#include <support/Thread.h>
+#include <support/Condition.h>
+#include <net/IOEventLoop.h>
+
 
 namespace agilNet
 {

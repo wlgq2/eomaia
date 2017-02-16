@@ -1,5 +1,7 @@
 #ifndef AGILNET_NET_BUFFER
 #define AGILNET_NET_BUFFER
+
+
 #include <vector>
 #include <stdint.h>
 #include <iostream>

@@ -1,8 +1,9 @@
-#include <SocketOperation.h>
+#include <net/SocketOperation.h>
+
 #include <boost/algorithm/string.hpp>
 #include <vector>
 #include <sstream>
-#include <Log.h>
+#include <support/Log.h>
 
 using namespace agilNet::log;
 using namespace agilNet::net;

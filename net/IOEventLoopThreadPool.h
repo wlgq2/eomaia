@@ -2,9 +2,10 @@
 #define AGILNET_NET_IOEVENTLOOPTHREADPOOL
 
 #include <vector>
-#include <IOEventLoop.h>
 #include <boost/shared_ptr.hpp>
-#include <IOEventLoopThread.h>
+
+#include <net/IOEventLoopThread.h>
+#include <net/IOEventLoop.h>
 
 namespace agilNet
 {

@@ -1,6 +1,6 @@
-#include <TcpConnect.h>
+#include <net/TcpConnect.h>
 #include <boost/thread/thread.hpp>
-#include <Log.h>
+#include <support/Log.h>
 #include <iostream>
 
 

@@ -1,13 +1,13 @@
 #ifndef AGILNET_NET_TCPSERVER
 #define AGILNET_NET_TCPSERVER
 
-#include <AtomicInt.h>
-#include <IOEventLoop.h>
-#include <TcpAccept.h>
 #include <map>
+#include <support/AtomicInt.h>
 
-#include <TcpConnect.h>
-#include <IOEventLoopThreadPool.h>
+#include <net/IOEventLoop.h>
+#include <net/TcpAccept.h>
+#include <net/TcpConnect.h>
+#include <net/IOEventLoopThreadPool.h>
 
 
 namespace agilNet

@@ -1,5 +1,5 @@
 # agilNet
-一个基于reactor模式+epoll复用机制的C++网络库，支持one loop per thread.  参考学习陈硕的muduo
+一个基于reactor模式+epoll复用机制的C++网络库，支持one loop per thread.  参考学习陈硕的muduo<br>
 
 ##零.代码编译
 目前是配置codeblocks工程开发编译/调试。<br>
@@ -10,7 +10,7 @@
 5.用codeblocks打开工程，点击build即可。<br>
 
 ##一.目录结构
-1.`demo` 相关测试例程，目前只包括一个回显服务器 <br>
+1.`demo` 相关测试例程 <br>
 2.`net` 网络库的主要实现，包括reactor模式实现与TCP相关类封装<br>
 3.`support` 网络库的依赖，包括log，线程同步机制，及线程/线程池<br>
 

@@ -1,8 +1,8 @@
 #ifndef AGILNET_SOCKET
 #define AGILNET_SOCKET
 
-#include <SocketOperation.h>
-#include <SocketAddr.h>
+#include <net/SocketOperation.h>
+#include <net/SocketAddr.h>
 
 namespace agilNet
 {

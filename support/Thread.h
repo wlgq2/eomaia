@@ -3,7 +3,7 @@
 
 #include <boost/thread.hpp>
 #include <boost/shared_ptr.hpp>
-#include <Condition.h>
+#include <support/Condition.h>
 
 
 namespace agilNet

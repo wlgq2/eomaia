@@ -2,11 +2,13 @@
 #define AGILNET_NET_TIMER_QUEUE
 
 #include <map>
-#include <Timer.h>
+
 #include <boost/shared_ptr.hpp>
 #include <boost/function.hpp>
-#include <IOEvent.h>
-#include <Mutex.h>
+#include <net/IOEvent.h>
+#include <net/Timer.h>
+
+#include <support/Mutex.h>
 
 namespace agilNet
 {
@@ -20,8 +22,10 @@ class TimerQueue
 public:
     TimerQueue(IOEventLoop* eventLoop);
     ~TimerQueue();
-    void addOniceTimer(uint32_t interval,boost::function<void ()>* handle);
-    void runOniceAfter(int interval,boost::function<void ()>* handle);
+    void addOniceTimer(boost::function<void ()> handle,uint32_t interval);
+    void addEveryTimer(boost::function<void ()> handle,uint32_t interval);
+    void runOniceAfter(boost::function<void ()> handle,int interval);
+    void runEveryInterval(boost::function<void ()> handle,int interval);
 
 private:
     IOEventLoop* loop;
@@ -35,6 +39,8 @@ private:
     void timerHandle();
     bool needResetTimer(std::multimap<uint64_t,boost::shared_ptr<Timer> > times,boost::shared_ptr<Timer> timer);
     void resetTimer(boost::shared_ptr<Timer> timer);
+    void resetTimer();
+    void readTimerfd();
 };
 
 }

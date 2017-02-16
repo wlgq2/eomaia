@@ -3,10 +3,11 @@
 
 
 #include <boost/shared_ptr.hpp>
-#include <Socket.h>
-#include <Buffer.h>
 #include <boost/function.hpp>
-#include <IOEventLoop.h>
+
+#include <net/IOEventLoop.h>
+#include <net/Socket.h>
+#include <net/Buffer.h>
 
 namespace agilNet
 {
