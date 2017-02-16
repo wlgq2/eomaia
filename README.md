@@ -30,5 +30,12 @@
 5 `Socket 与SocketOperation` : socket 与socket操作的封装<br>
 
 
-##四.关于该库的使用
+##四.定时器列队实现原理
+1.在TimerQueue类中初始化一个timerFd，并加入epoll事件中等待触发<br>
+2.TimerQueue中有两个multimap容器：everyTimers和everyTimers，分别是定时只运行一次事件，和定时间隔运行事件<br>
+3.每次添加定时器容器，如果加入事件比容器中时间最近的事件还近，则重置定时器为列队里最近事件<br>
+4.定时器事件被触发时，执行设置时间小于当前时间的定时器回调函数，并删除列队。<br>
+
+
+##五.关于该库的使用
 简单的说，只要继承自TcpServer类并实现几个虚事件函数即可.详见dome文件夹<br>
