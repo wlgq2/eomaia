@@ -41,7 +41,9 @@
 			<Add option="-lpthread" />
 			<Add option="-lboost_log_setup" />
 		</Linker>
-		<Unit filename="demo/2.timer/main.cpp" />
+		<Unit filename="demo/1.echo/EchoServer.cpp" />
+		<Unit filename="demo/1.echo/EchoServer.h" />
+		<Unit filename="demo/1.echo/main.cpp" />
 		<Unit filename="net/Buffer.cpp" />
 		<Unit filename="net/Buffer.h" />
 		<Unit filename="net/Epoll.cpp" />

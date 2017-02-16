@@ -28,6 +28,8 @@ public:
 
     void writeInLoop(const void* data, uint32_t len);
     void connectedHandle();
+
+    void setNoDelay(bool enable);
 private:
     IOEventLoop* loop;
     SocketAddr socketAddr;

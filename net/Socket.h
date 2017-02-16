@@ -18,6 +18,7 @@ public:
     int accept(SocketAddr& addr);
     void listen();
     int getFd();
+    void setTcpNoDelay(bool enable);
 private:
     int socketFd;
 };

@@ -1,7 +1,7 @@
-#include <EchoServer.h>
+#include <demo/1.echo/EchoServer.h>
 #include <iostream>
 
-#include <Log.h>
+#include <support/Log.h>
 
 using namespace agilNet::log;
 using namespace agilNet::net;

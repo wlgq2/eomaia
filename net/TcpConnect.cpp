@@ -17,6 +17,7 @@ TcpConnect::TcpConnect(IOEventLoop* l,struct sockaddr_in addr,int fd)
     event(new IOEvent(loop,fd)),
     state(Disconnecting)
 {
+    setNoDelay(true);
     loop->addEvent(event);
     event->setReadFunc(boost::bind(&TcpConnect::readEvent,this));
     event->setCloseFunc(boost::bind(&TcpConnect::closeEvent,this));
@@ -190,4 +191,10 @@ void TcpConnect::writeInLoop(const void* data, uint32_t len)
         }
 
     }
+}
+
+
+void TcpConnect::setNoDelay(bool enable)
+{
+    socket->setTcpNoDelay(enable);
 }

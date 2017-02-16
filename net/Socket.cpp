@@ -1,5 +1,6 @@
 #include <net/Socket.h>
 #include <net/SocketOperation.h>
+#include <linux/tcp.h>
 
 using namespace agilNet::net;
 
@@ -36,3 +37,8 @@ void Socket::listen()
     SocketOperation::listen(socketFd);
 }
 
+void Socket::setTcpNoDelay(bool enable)
+{
+    int opt = enable? 1:0;
+    ::setsockopt(socketFd,IPPROTO_TCP,TCP_NODELAY,&opt,sizeof(opt));
+}
