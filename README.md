@@ -37,5 +37,10 @@
 4.定时器事件被触发时，执行设置时间小于当前时间的定时器回调函数，并删除列队。如果间隔不断触发的事件，则删除元素后，更新时间重新添加。<br>
 
 
-##五.关于该库的使用
+##五.One loop per thread机制支持
+1.`support/Thread类`  ：把boost.thead封装成类似Qt/QThead,用户线程需继承Thread类，实现纯虚函数run(),并调用start()启动线程。<br>
+2.`net/IOEventLoopThread类`  ：Thread类的子类，实现具体业务逻辑，对应一个IOEventLoop事件循环，并在IOEventLoop记录当前线程ID。<br>
+3.`net/IOEventLoopThreadPool类`  ：线程池类，有新连接建立时，从线程池中分配一个线程给该TCP连接使用。<br>
+
+##六.关于该库的使用
 简单的说，只要继承自TcpServer类并实现几个虚事件函数即可.详见dome文件夹<br>
