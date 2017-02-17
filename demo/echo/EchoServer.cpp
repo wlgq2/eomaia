@@ -21,7 +21,8 @@ void EchoServer::connectCallback(int sockfd,const SocketAddr& addr)
 void EchoServer::messageCallback(const TcpConnect& tcpConnect, Buffer& buffer)
 {
     string addr = tcpConnect.getAddr().toString();
-    string data = buffer.readAllAsString();
+    string data;
+    buffer.readAllAsString(data);
     cout<<"thread id:"<<boost::this_thread::get_id()<<endl;
     cout<<"receive data form "<<addr<<":"<<data<<endl;
     LogOutput(info)<<"receive data form "<<addr<<":"<<data;

@@ -18,9 +18,9 @@ class TcpConnect
 public:
     TcpConnect(IOEventLoop* l,struct sockaddr_in addr,int fd);
     ~TcpConnect();
-    void setMessageCallback(boost::function<void (const TcpConnect&, Buffer&)> callback);
-    void setCloseCallback(boost::function<void (const TcpConnect&)> callback);
-    void setWriteCompletCallback(boost::function<void (const TcpConnect&)> callback);
+    void setMessageCallback(const boost::function<void (const TcpConnect&, Buffer&)> & callback);
+    void setCloseCallback(const boost::function<void (const TcpConnect&)> & callback);
+    void setWriteCompletCallback(const boost::function<void (const TcpConnect&)> & callback);
 
     const SocketAddr& getAddr() const;
 

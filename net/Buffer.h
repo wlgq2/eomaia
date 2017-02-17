@@ -59,18 +59,18 @@ public:
         }
     }
 
-    std::string readAllAsString()
+    int readAllAsString(std::string & readBuf)
     {
-        return readAsString(readableBytes());
+        return readAsString(readableBytes(),readBuf);
     }
 
-    std::string readAsString(uint32_t len)
+    int readAsString(uint32_t len,std::string & readBuf)
     {
         if(len > readableBytes())
             len = readableBytes();
-        std::string rst((const char *)readIndexPtr(), len);
+        readBuf.assign((const char *)readIndexPtr(), len);
         clearReadIndex(len);
-        return rst;
+        return len;
     }
 
     int readAllAsByte(std::vector<uint8_t>& data)
@@ -86,7 +86,7 @@ public:
         clearReadIndex(len);
         return len;
     }
-    
+
     void swap(Buffer& rhs);
 private:
     uint32_t readIndex;

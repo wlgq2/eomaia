@@ -16,12 +16,12 @@ namespace net
 class Timer
 {
 public:
-    Timer(uint32_t interval,boost::function<void ()> funcHandle);
+    Timer(uint32_t interval,const boost::function<void ()> & funcHandle);
     struct timeval getTimeOut();
     uint64_t getTimeOutMSecond();
     struct timespec getTimeInterval();
     void update();
-    void setHandle(boost::function<void ()> );
+    void setHandle(const boost::function<void ()> &);
 
     static uint64_t getNowTimeMSecond();
 

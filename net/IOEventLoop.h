@@ -17,15 +17,15 @@ public :
     IOEventLoop();
     ~IOEventLoop();
 
-    void addEvent(boost::shared_ptr<IOEvent> event);
-    void removeEvent(boost::shared_ptr<IOEvent> event);
-    void modifyEvent(boost::shared_ptr<IOEvent> event);
+    void addEvent( boost::shared_ptr<IOEvent> event);
+    void removeEvent( boost::shared_ptr<IOEvent> event);
+    void modifyEvent( boost::shared_ptr<IOEvent>  event);
     void modifyEvent(int fd);
     void removeEvent(int fd);
     void run();
-    void runInLoop(boost::function<void ()> func);
-    void runOniceAfter(boost::function<void ()> callback,uint32_t interval);
-    void runEveryInterval(boost::function<void ()> callback,uint32_t interval);
+    void runInLoop(const boost::function<void ()> & func);
+    void runOniceAfter(const boost::function<void ()> & callback,uint32_t interval);
+    void runEveryInterval(const boost::function<void ()> & callback,uint32_t interval);
 
 private:
     static const int PollTimeMs;
@@ -35,6 +35,7 @@ private:
     boost::shared_ptr<TimerQueue> timerQueue;
 
     std::vector<boost::function<void ()> > functions;
+
     void addFunInLoop(boost::function<void ()> func);
 
     bool inThisThread();

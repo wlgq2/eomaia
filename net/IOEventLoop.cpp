@@ -87,7 +87,7 @@ void IOEventLoop::modifyEvent(int fd)
 }
 
 
-void IOEventLoop::runInLoop(boost::function<void ()> func)
+void IOEventLoop::runInLoop(const function<void ()> & func)
 {
     if(inThisThread())
     {
@@ -100,7 +100,7 @@ void IOEventLoop::runInLoop(boost::function<void ()> func)
 
 }
 
-void IOEventLoop::addFunInLoop(boost::function<void ()> func)
+void IOEventLoop::addFunInLoop(function<void ()> func)
 {
     MutexGuard lock(mutex);
     functions.push_back(func);
@@ -121,13 +121,13 @@ bool IOEventLoop::inThisThread()
     return (thisTheadId == Thread::getNowThreadId());
 }
 
-void IOEventLoop::runOniceAfter(boost::function<void ()> callback,uint32_t interval)
+void IOEventLoop::runOniceAfter(const function<void ()> & callback,uint32_t interval)
 {
     timerQueue->runOniceAfter(callback,interval);
 
 }
 
-void IOEventLoop::runEveryInterval(boost::function<void ()> callback,uint32_t interval)
+void IOEventLoop::runEveryInterval(const function<void ()> & callback,uint32_t interval)
 {
     timerQueue->runEveryInterval(callback,interval);
 }

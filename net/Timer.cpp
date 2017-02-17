@@ -3,7 +3,7 @@
 using namespace agilNet::net;
 using namespace boost;
 
-Timer::Timer(uint32_t interval,function<void ()> funcHandle)
+Timer::Timer(uint32_t interval,const function<void ()> & funcHandle)
     :intervalMs(interval),
     handle(funcHandle)
 {
@@ -44,7 +44,7 @@ uint64_t Timer::getTimeOutMSecond()
     return mSecond;
 }
 
-void Timer::setHandle(function<void ()> func)
+void Timer::setHandle(const function<void ()> & func)
 {
     handle = func;
 }

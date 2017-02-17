@@ -31,17 +31,17 @@ TcpConnect::~TcpConnect()
 }
 
 
-void TcpConnect::setMessageCallback(boost::function<void (const TcpConnect&, Buffer&)> callback)
+void TcpConnect::setMessageCallback(const boost::function<void (const TcpConnect&, Buffer&)> & callback)
 {
     messageCallback = callback;
 }
 
-void TcpConnect::setCloseCallback(boost::function<void (const TcpConnect&)> callback)
+void TcpConnect::setCloseCallback(const boost::function<void (const TcpConnect&)> & callback)
 {
     closeCallback = callback;
 }
 
-void TcpConnect::setWriteCompletCallback(boost::function<void (const TcpConnect&)> callback)
+void TcpConnect::setWriteCompletCallback(const boost::function<void (const TcpConnect&)> & callback)
 {
     writeCompleteCallback = callback;
 }

@@ -27,40 +27,40 @@ TimerQueue::~TimerQueue()
 }
 
 
-void TimerQueue::runOniceAfter(function<void ()> handle,int interval)
+void TimerQueue::runOniceAfter(const function<void ()> & handle,int interval)
 {
     MutexGuard lock(mutex);
     addOniceTimer(handle,interval);
 }
 
-void TimerQueue::addOniceTimer(function<void ()> handle,uint32_t interval)
+void TimerQueue::addOniceTimer(const function<void ()> & handle,uint32_t interval)
 {
     shared_ptr<Timer> timer(new Timer(interval,handle));
     oniceTimers.insert(pair<uint64_t,shared_ptr<Timer> >(timer->getTimeOutMSecond(),timer));
-    if(needResetTimer(oniceTimers,timer) && needResetTimer(everytimers,timer))
+    if(needResetTimer(oniceTimers,timer) && needResetTimer(everyTimers,timer))
     {
         resetTimer(timer);
     }
 }
 
 
-void TimerQueue::runEveryInterval(boost::function<void ()> handle,int interval)
+void TimerQueue::runEveryInterval(const boost::function<void ()> & handle,int interval)
 {
     MutexGuard lock(mutex);
     addEveryTimer(handle,interval);
 }
 
-void TimerQueue::addEveryTimer(boost::function<void ()> handle,uint32_t interval)
+void TimerQueue::addEveryTimer(const function<void ()> & handle,uint32_t interval)
 {
     shared_ptr<Timer> timer(new Timer(interval,handle));
-    everytimers.insert(pair<uint64_t,shared_ptr<Timer> >(timer->getTimeOutMSecond(),timer));
-    if(needResetTimer(oniceTimers,timer) && needResetTimer(everytimers,timer))
+    everyTimers.insert(pair<uint64_t,shared_ptr<Timer> >(timer->getTimeOutMSecond(),timer));
+    if(needResetTimer(oniceTimers,timer) && needResetTimer(everyTimers,timer))
     {
         resetTimer(timer);
     }
 }
 
-bool TimerQueue::needResetTimer(multimap<uint64_t,shared_ptr<Timer> > times , shared_ptr<Timer> timer)
+bool TimerQueue::needResetTimer(multimap<uint64_t,shared_ptr<Timer> > & times , shared_ptr<Timer> timer)
 {
     if(times.empty())
         return true;
@@ -97,7 +97,7 @@ void TimerQueue::timerHandle()
     }
 
 
-    for(it=everytimers.begin();it!=everytimers.end();it++)
+    for(it=everyTimers.begin();it!=everyTimers.end();it++)
     {
         if(it->first > Timer::getNowTimeMSecond())
         {
@@ -106,8 +106,8 @@ void TimerQueue::timerHandle()
         it->second->timerHandle();
         shared_ptr<Timer> timer = it->second;
         timer->update();
-        everytimers.insert(pair<uint64_t,shared_ptr<Timer> >(timer->getTimeOutMSecond(),timer));
-        everytimers.erase(it);
+        everyTimers.insert(pair<uint64_t,shared_ptr<Timer> >(timer->getTimeOutMSecond(),timer));
+        everyTimers.erase(it);
     }
     resetTimer();
 }
@@ -131,16 +131,16 @@ void TimerQueue::resetTimer()
 {
     if(oniceTimers.empty())
     {
-        if(!everytimers.empty())
+        if(!everyTimers.empty())
         {
             multimap<uint64_t,shared_ptr<Timer> >::iterator it;
-            it = everytimers.begin();
+            it = everyTimers.begin();
             resetTimer(it->second);
         }
     }
     else
     {
-        if(everytimers.empty())
+        if(everyTimers.empty())
         {
             multimap<uint64_t,shared_ptr<Timer> >::iterator it;
             it = oniceTimers.begin();
@@ -150,7 +150,7 @@ void TimerQueue::resetTimer()
         {
             multimap<uint64_t,shared_ptr<Timer> >::iterator it1;
             multimap<uint64_t,shared_ptr<Timer> >::iterator it2;
-            it1 = everytimers.begin();
+            it1 = everyTimers.begin();
             it2 = oniceTimers.begin();
             if(it1->second->getTimeOutMSecond() < it2->second->getTimeOutMSecond())
             {

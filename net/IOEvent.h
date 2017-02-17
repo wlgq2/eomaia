@@ -34,10 +34,10 @@ public:
 
     void handle(uint32_t revents);
 
-    void setReadFunc(boost::function<void()> func);
-    void setWriteFunc(boost::function<void()> func);
-    void setErrorFunc(boost::function<void()> func);
-    void setCloseFunc(boost::function<void()> func);
+    void setReadFunc(const boost::function<void()> & func);
+    void setWriteFunc(const boost::function<void()> & func);
+    void setErrorFunc(const boost::function<void()> & func);
+    void setCloseFunc(const boost::function<void()> & func);
 private:
     IOEventLoop* eventLoop;
     void update();

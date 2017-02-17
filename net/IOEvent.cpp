@@ -76,22 +76,22 @@ uint32_t IOEvent::getEvents()
     return events;
 }
 
-void IOEvent::setReadFunc(function<void()> func)
+void IOEvent::setReadFunc(const function<void()> & func)
 {
     readHandle = func;
 
 }
-void IOEvent::setWriteFunc(function<void()> func)
+void IOEvent::setWriteFunc(const function<void()> & func)
 {
     writeHandle = func;
 
 }
-void IOEvent::setErrorFunc(function<void()> func)
+void IOEvent::setErrorFunc(const function<void()> & func)
 {
     errorHandle = func;
 
 }
-void IOEvent::setCloseFunc(function<void()> func)
+void IOEvent::setCloseFunc(const function<void()> & func)
 {
     closeHandle = func;
 }
