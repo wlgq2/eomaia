@@ -1,4 +1,4 @@
-#include <demo/1.echo/EchoServer.h>
+#include <demo/echo/EchoServer.h>
 #include <iostream>
 #include <support/Log.h>
 #include <net/IOEventLoop.h>

@@ -15,7 +15,7 @@ IOEventLoopThread::IOEventLoopThread()
 IOEventLoop* IOEventLoopThread::getLoopInThread()
 {
     {
-        MutexGuard mutexGuard(mutex);
+        MutexGuard lock(mutex);
         //需要阻塞等待线程初始化
         if(NULL == loop)
         {
@@ -30,7 +30,7 @@ void IOEventLoopThread::run()
 {
     IOEventLoop loop;
     {
-        MutexGuard mutexGuard(mutex);
+        MutexGuard lock(mutex);
         this->loop = &loop;
         condtion.notify();
     }

@@ -73,19 +73,20 @@ public:
         return rst;
     }
 
-    std::vector<uint8_t> readAllAsByte()
+    int readAllAsByte(std::vector<uint8_t>& data)
     {
-        return readBytes(readableBytes());
+        return readBytes(data,readableBytes());
     }
 
-    std::vector<uint8_t> readBytes(uint32_t len)
+    int readBytes(std::vector<uint8_t>& data,uint32_t len)
     {
         if(len > readableBytes())
             len = readableBytes();
-        std::vector<uint8_t> rst(readIndexPtr(), readIndexPtr()+len);
+        data.assign(readIndexPtr(), readIndexPtr()+len);
         clearReadIndex(len);
-        return rst;
+        return len;
     }
+    
     void swap(Buffer& rhs);
 private:
     uint32_t readIndex;

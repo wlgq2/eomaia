@@ -31,7 +31,7 @@ bool TcpAccept:: isListen()
 {
     return listening;
 }
-void  TcpAccept::setNewConnectCallback( boost::function<void (int sockfd,const SocketAddr&)> callback)
+void  TcpAccept::setNewConnectCallback( const boost::function<void (int sockfd,const SocketAddr&)> & callback)
 {
     newConnectCallback = callback;
 }

@@ -28,8 +28,8 @@
 		<Compiler>
 			<Add option="-Wall" />
 			<Add option="-DBOOST_ALL_DYN_LINK" />
-			<Add directory="demo/echo" />
 			<Add directory="../agilNet" />
+			<Add directory="../agilNet-master" />
 		</Compiler>
 		<ResourceCompiler>
 			<Add directory="support" />
@@ -41,9 +41,9 @@
 			<Add option="-lpthread" />
 			<Add option="-lboost_log_setup" />
 		</Linker>
-		<Unit filename="demo/1.echo/EchoServer.cpp" />
-		<Unit filename="demo/1.echo/EchoServer.h" />
-		<Unit filename="demo/1.echo/main.cpp" />
+		<Unit filename="demo/echo/EchoServer.cpp" />
+		<Unit filename="demo/echo/EchoServer.h" />
+		<Unit filename="demo/echo/main.cpp" />
 		<Unit filename="net/Buffer.cpp" />
 		<Unit filename="net/Buffer.h" />
 		<Unit filename="net/Epoll.cpp" />

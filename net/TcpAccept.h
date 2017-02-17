@@ -18,7 +18,7 @@ public:
     ~TcpAccept();
     void listen();
     bool isListen();
-    void setNewConnectCallback( boost::function<void (int sockfd,const SocketAddr&)> callback);
+    void setNewConnectCallback(const boost::function<void (int sockfd,const SocketAddr&)> & callback);
 private:
     IOEventLoop* eventLoop;
     boost::shared_ptr<Socket> socket;
