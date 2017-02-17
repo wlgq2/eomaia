@@ -43,4 +43,4 @@
 3.`net/IOEventLoopThreadPool类`  ：线程池类，有新连接建立时，从线程池中分配一个线程给该TCP连接使用。<br>
 
 ##六.关于该库的使用
-简单的说，只要继承自TcpServer类并实现几个虚事件函数即可.详见dome文件夹<br>
+只要继承自TcpServer类并实现几个虚事件函数即可.详见dome文件夹<br>
