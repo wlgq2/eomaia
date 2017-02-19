@@ -23,7 +23,7 @@ public:
     //TcpServer 是个总是被继承的类，虚析构函数比较安全。
     virtual ~TcpServer();
     void start();
-    virtual void connectCallback(int sockfd,const SocketAddr& addr)=0;
+    virtual void connectCallback(TcpConnect& tcpConnect)=0;
     virtual void messageCallback(const TcpConnect&, Buffer&)=0;
     virtual void writeCompletCallback() = 0;
     virtual void connectCloseCallback(const TcpConnect&)=0;

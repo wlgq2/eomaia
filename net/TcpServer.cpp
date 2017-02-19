@@ -49,7 +49,7 @@ void TcpServer::newConnected(int sockfd,const SocketAddr& addr)
     tcpConnect->setMessageCallback(boost::bind(&TcpServer::messageCallback,this,_1,_2));
     tcpConnect->setCloseCallback(boost::bind(&TcpServer::connectCloseEvent,this,_1));
     tcpConnect->connectedHandle();
-    connectCallback(sockfd,addr);
+    connectCallback(*tcpConnect);
 }
 
 void TcpServer::addConnect(string name,shared_ptr<TcpConnect> connect)

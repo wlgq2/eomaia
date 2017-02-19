@@ -166,12 +166,12 @@ void TimerQueue::resetTimer()
 
 int TimerQueue::createTimeFd()
 {
-  int fd = ::timerfd_create(CLOCK_MONOTONIC,TFD_NONBLOCK | TFD_CLOEXEC);
-  if (fd < 0)
-  {
-    LogOutput(error) << "failed to create time fd";
-  }
-  return fd;
+    int fd = ::timerfd_create(CLOCK_MONOTONIC,TFD_NONBLOCK | TFD_CLOEXEC);
+    if (fd < 0)
+    {
+        LogOutput(error) << "failed to create time fd";
+    }
+    return fd;
 }
 
 void TimerQueue::readTimerfd()

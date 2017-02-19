@@ -141,6 +141,7 @@ bool SocketOperation::toAddrIpv4(uint16_t port,struct sockaddr_in& addrIn)
     addrIn.sin_addr.s_addr = htonl (INADDR_ANY);
     return true;
 }
+
 string SocketOperation::ipToString(struct sockaddr_in addr)
 {
     std::stringstream stream;
@@ -155,12 +156,14 @@ string SocketOperation::ipToString(struct sockaddr_in addr)
     stream<<":"<<(((addr.sin_port<<8)&0x00ffff)|(addr.sin_port>>8));
     return stream.str() ;
 }
+
 string SocketOperation::toString(struct sockaddr_in addr)
 {
     string addrPort ;
     addrPort = ipToString(addr);
     return addrPort;
 }
+
 template<typename T>
 bool SocketOperation::stringToInt(const string& str, T& num)
 {
@@ -168,4 +171,21 @@ bool SocketOperation::stringToInt(const string& str, T& num)
     stream<< str<<endl;
     stream>>num;
     return stream.good();
+}
+
+
+int SocketOperation::showdown(int sockfd)
+{
+    int rst ;
+    if ((rst = ::shutdown(sockfd, SHUT_WR)) < 0)
+    {
+        LogOutput(error) << "shutdown socket error";
+    }
+    return rst;
+}
+
+void SocketOperation::setTcpNoDelay(int fd,bool isEnable)
+{
+    int opt = isEnable? 1:0;
+    ::setsockopt(fd,IPPROTO_TCP,TCP_NODELAY,&opt,sizeof(opt));
 }

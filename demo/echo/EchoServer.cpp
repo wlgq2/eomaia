@@ -13,10 +13,10 @@ EchoServer::EchoServer(IOEventLoop* loop,SocketAddr& addr)
 
 }
 
-void EchoServer::connectCallback(int sockfd,const SocketAddr& addr)
+void EchoServer::connectCallback(TcpConnect& tcpConnect)
 {
 
-    cout<<"new connect:"<<addr.toString() <<"<count>" <<getConnectCount()<<endl;
+    cout<<"new connect:"<<tcpConnect.getAddr().toString() <<"<count>" <<getConnectCount()<<endl;
 }
 void EchoServer::messageCallback(const TcpConnect& tcpConnect, Buffer& buffer)
 {
