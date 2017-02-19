@@ -23,10 +23,10 @@ public:
     //TcpServer 是个总是被继承的类，虚析构函数比较安全。
     virtual ~TcpServer();
     void start();
-    virtual void connectCallback(TcpConnect& tcpConnect)=0;
-    virtual void messageCallback(const TcpConnect&, Buffer&)=0;
+    virtual void connectCallback(boost::shared_ptr<TcpConnect> tcpConnect)=0;
+    virtual void messageCallback(boost::shared_ptr<TcpConnect>, Buffer&)=0;
     virtual void writeCompletCallback() = 0;
-    virtual void connectCloseCallback(const TcpConnect&)=0;
+    virtual void connectCloseCallback(boost::shared_ptr<TcpConnect>)=0;
 
     void addConnect(std::string name,boost::shared_ptr<TcpConnect> connect);
     void addConnect(std::string name,TcpConnect* connect);
@@ -35,9 +35,9 @@ public:
     long getConnectCount();
 
     void write(TcpConnect& connect,void* data,uint32_t length);
-    void write(std::string name,void* data,uint32_t length);
+    void write(std::string& name,void* data,uint32_t length);
     void write(boost::shared_ptr<TcpConnect> connect,void* data,uint32_t length);
-    void write(std::string name,std::string data);
+    void write(std::string& name,std::string& data);
     void setThreadPoolSize(uint16_t num);
 private:
     void newConnected(int sockfd,const SocketAddr& addr);
@@ -46,7 +46,7 @@ private:
     boost::shared_ptr<TcpAccept> tcpAccept;
 
     std::map<std::string,boost::shared_ptr<TcpConnect> >connectPool;
-    void connectCloseEvent(const TcpConnect& connect);
+    void connectCloseEvent(boost::shared_ptr<TcpConnect> connect);
     AtomicInt8 isStart;
 
     boost::shared_ptr<IOEventLoopThreadPool> threadPool;

@@ -28,6 +28,11 @@ void Buffer::append(const char* data, size_t len)
     writeIndex+= len;
 }
 
+void Buffer::append(const string& str)
+{
+    const char* data = &(*str.begin());
+    append(data, str.size());
+}
 
 
 void Buffer::ensureWritableBytes(size_t len)

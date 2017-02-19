@@ -7,7 +7,7 @@
 using namespace agilNet::log;
 using namespace agilNet::net;
 using namespace std;
-
+using namespace boost;
 
 TcpConnect::TcpConnect(IOEventLoop* l,struct sockaddr_in addr,int fd)
     :loop(l),
@@ -31,17 +31,17 @@ TcpConnect::~TcpConnect()
 }
 
 
-void TcpConnect::setMessageCallback(const boost::function<void (const TcpConnect&, Buffer&)> & callback)
+void TcpConnect::setMessageCallback(const boost::function<void ( boost::shared_ptr<TcpConnect>, Buffer&)> & callback)
 {
     messageCallback = callback;
 }
 
-void TcpConnect::setCloseCallback(const boost::function<void (const TcpConnect&)> & callback)
+void TcpConnect::setCloseCallback(const boost::function<void (boost::shared_ptr<TcpConnect>)> & callback)
 {
     closeCallback = callback;
 }
 
-void TcpConnect::setWriteCompletCallback(const boost::function<void (const TcpConnect&)> & callback)
+void TcpConnect::setWriteCompletCallback(const boost::function<void (boost::shared_ptr<TcpConnect>)> & callback)
 {
     writeCompleteCallback = callback;
 }
@@ -54,7 +54,9 @@ void TcpConnect::readEvent()
     if (n > 0)
     {
         if(messageCallback)
-            messageCallback(getRefer(),readBuf);
+        {
+            messageCallback(shared_from_this(),readBuf);
+        }
     }
     else if (n == 0)
     {
@@ -71,10 +73,12 @@ void TcpConnect::closeEvent()
 {
     state = Disconnected;
     if(closeCallback)
-        closeCallback(getRefer());
+    {
+        closeCallback(shared_from_this());
+    }
 }
 
-const TcpConnect& TcpConnect::getRefer()
+TcpConnect& TcpConnect::getRefer()
 {
     return (*this);
 }
@@ -113,7 +117,8 @@ void TcpConnect::writeEvent()
                 event->enableWriting(false);
                 if (writeCompleteCallback)
                 {
-                    writeCompleteCallback(getRefer());
+                    shared_ptr<TcpConnect> tmp(this);
+                    writeCompleteCallback(tmp);
                     //loop_->queueInLoop(boost::bind(writeCompleteCallback_, shared_from_this()));
                 }
             }
@@ -135,10 +140,21 @@ void TcpConnect::writeEvent()
     }
 }
 
-void TcpConnect::writeInLoop(const void* data, uint32_t len)
+void TcpConnect::write(const char* data)
+{
+    int len = ::strlen(data);
+    write((void*)data,len);
+}
+
+void TcpConnect::write(const string& data)
+{
+    write(&(*data.begin()),data.length());
+}
+
+void TcpConnect::write(const void* data,uint32_t length)
 {
     int n = 0;
-    size_t remaining = len;
+    size_t remaining = length;
     bool faultError = false;
     if (state == Disconnected)
     {
@@ -149,14 +165,15 @@ void TcpConnect::writeInLoop(const void* data, uint32_t len)
     //如该写数据缓冲区内有数据，直接写入socket缓冲区会导致数据交叠
     if (!event->isWriting() && writeBuf.isEmpty())
     {
-        n = SocketOperation::write(event->getFd(), data, len);
+        n = SocketOperation::write(event->getFd(), data, length);
         if (n >= 0)
         {
-            remaining = len - n;
+            remaining = length - n;
             if (remaining == 0 && writeCompleteCallback)
             {
+                shared_ptr<TcpConnect> tmp(this);
                 //loop->queueInLoop(boost::bind(writeCompleteCallback, shared_from_this()));
-                writeCompleteCallback(getRefer());
+                writeCompleteCallback(tmp);
             }
         }
         else
@@ -191,10 +208,25 @@ void TcpConnect::writeInLoop(const void* data, uint32_t len)
         }
 
     }
+
+}
+
+void TcpConnect::writeInLoop(const void* data, uint32_t len)
+{
+    loop->runInLoop(boost::bind(&TcpConnect::write,this,data,len));
 }
 
 
 void TcpConnect::setNoDelay(bool enable)
 {
     socket->setTcpNoDelay(enable);
+}
+
+void TcpConnect::shutdownWrite()
+{
+    if (state == Connected)
+    {
+        state = Disconnecting;
+        socket->shutdownWrite();
+    }
 }

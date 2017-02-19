@@ -49,7 +49,7 @@ void TcpServer::newConnected(int sockfd,const SocketAddr& addr)
     tcpConnect->setMessageCallback(boost::bind(&TcpServer::messageCallback,this,_1,_2));
     tcpConnect->setCloseCallback(boost::bind(&TcpServer::connectCloseEvent,this,_1));
     tcpConnect->connectedHandle();
-    connectCallback(*tcpConnect);
+    connectCallback(tcpConnect);
 }
 
 void TcpServer::addConnect(string name,shared_ptr<TcpConnect> connect)
@@ -68,10 +68,10 @@ void TcpServer::removeConnect(string name)
 }
 
 
-void TcpServer::connectCloseEvent(const TcpConnect& connect)
+void TcpServer::connectCloseEvent(boost::shared_ptr<TcpConnect> connect)
 {
     connectCloseCallback(connect);
-    removeConnect(connect.getName());
+    removeConnect(connect->getName());
 }
 
 
@@ -92,11 +92,11 @@ void TcpServer::write(TcpConnect& connect,void* data,uint32_t length)
 
 void TcpServer::write(shared_ptr<TcpConnect> connect,void* data,uint32_t length)
 {
-    connect->writeInLoop(data,length);
+    connect->write(data,length);
 }
 
 
-void TcpServer::write(string name,void* data,uint32_t length)
+void TcpServer::write(string& name,void* data,uint32_t length)
 {
     if(haveConect(name))
     {
@@ -108,7 +108,7 @@ void TcpServer::write(string name,void* data,uint32_t length)
     }
 }
 
-void TcpServer::write(string name,string data)
+void TcpServer::write(string& name,string& data)
 {
     write(name,&(*data.begin()),data.length());
 }

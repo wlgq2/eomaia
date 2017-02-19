@@ -19,7 +19,7 @@ public:
     void listen();
     int getFd();
     void setTcpNoDelay(bool enable);
-    int shutdown();
+    int shutdownWrite();
 private:
     int socketFd;
 };

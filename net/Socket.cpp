@@ -42,7 +42,7 @@ void Socket::setTcpNoDelay(bool enable)
     SocketOperation::setTcpNoDelay(socketFd,enable);
 }
 
-int Socket::shutdown()
+int Socket::shutdownWrite()
 {
-    return SocketOperation::showdown(socketFd);
+    return SocketOperation::shutdownWrite(socketFd);
 }

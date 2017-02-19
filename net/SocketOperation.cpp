@@ -174,12 +174,12 @@ bool SocketOperation::stringToInt(const string& str, T& num)
 }
 
 
-int SocketOperation::showdown(int sockfd)
+int SocketOperation::shutdownWrite(int sockfd)
 {
     int rst ;
     if ((rst = ::shutdown(sockfd, SHUT_WR)) < 0)
     {
-        LogOutput(error) << "shutdown socket error";
+        LogOutput(error) << "shutdown write  error";
     }
     return rst;
 }

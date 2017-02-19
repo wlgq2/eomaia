@@ -5,6 +5,7 @@
 #include <vector>
 #include <stdint.h>
 #include <iostream>
+#include <algorithm>
 
 //这个类不是线程安全的。
 namespace agilNet
@@ -34,6 +35,8 @@ public:
     }
 
     void append(const char*  data, std::size_t len);
+    void append(const std::string& str);
+
     void ensureWritableBytes(std::size_t len);
 
     const uint8_t* readIndexPtr() const

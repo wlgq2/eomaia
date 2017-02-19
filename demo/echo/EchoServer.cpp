@@ -6,6 +6,7 @@
 using namespace agilNet::log;
 using namespace agilNet::net;
 using namespace std;
+using namespace boost;
 
 EchoServer::EchoServer(IOEventLoop* loop,SocketAddr& addr)
     :TcpServer(loop,addr)
@@ -13,29 +14,28 @@ EchoServer::EchoServer(IOEventLoop* loop,SocketAddr& addr)
 
 }
 
-void EchoServer::connectCallback(TcpConnect& tcpConnect)
+void EchoServer::connectCallback(shared_ptr<TcpConnect> tcpConnect)
 {
-
-    cout<<"new connect:"<<tcpConnect.getAddr().toString() <<"<count>" <<getConnectCount()<<endl;
+    cout<<"new connect:"<<tcpConnect->getAddr().toString() <<"<count>" <<getConnectCount()<<endl;
 }
-void EchoServer::messageCallback(const TcpConnect& tcpConnect, Buffer& buffer)
+void EchoServer::messageCallback(shared_ptr<TcpConnect> tcpConnect, Buffer& buffer)
 {
-    string addr = tcpConnect.getAddr().toString();
+    cout<<"thread id:"<<boost::this_thread::get_id()<<endl;
+    string addr = tcpConnect->getAddr().toString();
     string data;
     buffer.readAllAsString(data);
-    cout<<"thread id:"<<boost::this_thread::get_id()<<endl;
     cout<<"receive data form "<<addr<<":"<<data<<endl;
     LogOutput(info)<<"receive data form "<<addr<<":"<<data;
-    write(tcpConnect.getName(),data);
+    tcpConnect->write(data);
 }
 void EchoServer::writeCompletCallback()
 {
 
 }
 
-void EchoServer::connectCloseCallback(const TcpConnect& connect)
+void EchoServer::connectCloseCallback( boost::shared_ptr<TcpConnect> connect)
 {
-    string addr = connect.getAddr().toString();
+    string addr = connect->getAddr().toString();
     cout<<"close connect :"<<addr<<endl;
     LogOutput(info)<<"close connect : "<<addr;
 }

@@ -26,7 +26,7 @@ public:
     static ssize_t readv(int sockfd, const struct iovec *iov, int iovcnt);
     static ssize_t write(int sockfd, const void *buf, size_t count);
     static void close(int sockfd);
-    static int showdown(int sockfd);
+    static int shutdownWrite(int sockfd);
     static void setTcpNoDelay(int fd,bool isEnable);
     static void getAddrAnyIpv4(struct sockaddr_in& addrIn,uint16_t port);
     static bool toAddrIpv4(const std::string& addrIp,struct sockaddr_in& addrIn);
