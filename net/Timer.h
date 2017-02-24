@@ -24,7 +24,8 @@ public:
     void setHandle(const boost::function<void ()> &);
 
     static uint64_t getNowTimeMSecond();
-
+    static std::string getNowTimeDate();
+    
     void timerHandle();
 private:
     uint32_t intervalMs;

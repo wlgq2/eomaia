@@ -1,7 +1,9 @@
 #include <net/Timer.h>
+#include <sstream>
 
 using namespace agilNet::net;
 using namespace boost;
+using namespace std;
 
 Timer::Timer(uint32_t interval,const function<void ()> & funcHandle)
     :intervalMs(interval),
@@ -31,6 +33,7 @@ struct timespec Timer::getTimeInterval()
 }
 
 
+
 void Timer::update()
 {
     struct  timezone   tz;
@@ -57,6 +60,18 @@ uint64_t Timer::getNowTimeMSecond()
     uint64_t ms = (nowDate.tv_sec)*1000+  nowDate.tv_usec/1000;
     return ms;
 }
+
+string Timer::getNowTimeDate()
+{
+    time_t timep;
+    struct tm *p;
+    time(&timep);
+    p = localtime(&timep);
+    stringstream stream;
+    stream<<(1900+p->tm_year)<<" "<<(1+p->tm_mon)<<"/"<<p->tm_mday<<" "<<p->tm_hour<<":"<<p->tm_min<<":"<<p->tm_sec<<endl;
+    return stream.str();
+}
+
 
 void Timer::timerHandle()
 {

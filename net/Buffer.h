@@ -91,6 +91,29 @@ public:
     }
 
     void swap(Buffer& rhs);
+
+
+    const char* findCRLF() const
+    {
+        char kCRLF[] = "\r\n";
+       // const char* writePtr = bufferPtr()+writeIndex;
+        const char* crlf = std::search((char*)readIndexPtr(),(char *)bufferPtr()+writeIndex, kCRLF, kCRLF+2);
+        return crlf == ((char*)bufferPtr()+writeIndex) ? NULL : crlf;
+    }
+    void retrieveUntil(const char* end)
+    {
+        if(!(readIndexPtr() <= (uint8_t*)end))
+        {
+            std::cout<<"error retrieveUntil"<<std::endl;
+            return ;
+        }
+        if(!(end <=  ((char*)bufferPtr()+writeIndex) ))
+        {
+            std::cout<<"error retrieveUntil"<<std::endl;
+            return ;
+        }
+        clearReadIndex((uint8_t*)end - readIndexPtr());
+    }
 private:
     uint32_t readIndex;
     uint32_t writeIndex;

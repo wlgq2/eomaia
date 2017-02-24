@@ -41,9 +41,9 @@
 			<Add option="-lpthread" />
 			<Add option="-lboost_log_setup" />
 		</Linker>
-		<Unit filename="demo/echo/EchoServer.cpp" />
-		<Unit filename="demo/echo/EchoServer.h" />
-		<Unit filename="demo/echo/main.cpp" />
+		<Unit filename="demo/http/HttpServerDemo.cpp" />
+		<Unit filename="demo/http/HttpServerDemo.h" />
+		<Unit filename="demo/http/main.cpp" />
 		<Unit filename="net/Buffer.cpp" />
 		<Unit filename="net/Buffer.h" />
 		<Unit filename="net/Epoll.cpp" />
@@ -74,6 +74,13 @@
 		<Unit filename="net/Timer.h" />
 		<Unit filename="net/TimerQueue.cpp" />
 		<Unit filename="net/TimerQueue.h" />
+		<Unit filename="net/http/HttpContext.cpp" />
+		<Unit filename="net/http/HttpContext.h" />
+		<Unit filename="net/http/HttpRequest.h" />
+		<Unit filename="net/http/HttpResponse.cpp" />
+		<Unit filename="net/http/HttpResponse.h" />
+		<Unit filename="net/http/HttpServer.cpp" />
+		<Unit filename="net/http/HttpServer.h" />
 		<Unit filename="support/AtomicInt.h" />
 		<Unit filename="support/Condition.h" />
 		<Unit filename="support/Log.cpp" />
