@@ -16,9 +16,11 @@ namespace net
 class SocketOperation
 {
 public:
+    static int bind(int sockfd, const struct sockaddr_in* addr);
     static int createNonblockingSocket();
+    static int  listen(int sockfd);
     static int  connect(int sockfd, const struct sockaddr* addr);
-    static int  accept(int sockfd, struct sockaddr_in6* addr);
+    static int  accept(int sockfd, struct sockaddr_in* addr);
     static ssize_t read(int sockfd, void *buf, size_t count);
     static ssize_t readv(int sockfd, const struct iovec *iov, int iovcnt);
     static ssize_t write(int sockfd, const void *buf, size_t count);

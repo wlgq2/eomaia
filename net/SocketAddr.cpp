@@ -3,6 +3,11 @@
 
 using namespace agilNet::net;
 
+SocketAddr::SocketAddr()
+    :valid(false)
+{
+
+}
 SocketAddr::SocketAddr(struct sockaddr_in addr)
     : valid(true),
     sockAddr(addr)
@@ -48,9 +53,15 @@ SocketAddr::SocketAddr(uint16_t port)
     new (this)SocketAddr( addrIn);
 
 }
-struct sockaddr_in SocketAddr::getAddr()
+
+void SocketAddr::setAddr(struct sockaddr_in addr)
 {
-    return sockAddr;
+    sockAddr = addr;
+    valid = true;
+}
+struct sockaddr_in* SocketAddr::getAddr()
+{
+    return &sockAddr;
 }
 
 bool SocketAddr::isValid()

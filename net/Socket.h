@@ -2,6 +2,7 @@
 #define AGILNET_SOCKET
 
 #include <SocketOperation.h>
+#include <SocketAddr.h>
 
 namespace agilNet
 {
@@ -13,6 +14,9 @@ class Socket
 public:
     Socket(int fd);
     ~Socket();
+    void bind(SocketAddr& addr);
+    int accept(SocketAddr& addr);
+    void listen();
 private:
     int socketFd;
 };

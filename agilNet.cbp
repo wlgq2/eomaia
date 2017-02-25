@@ -28,7 +28,7 @@
 		<Compiler>
 			<Add option="-Wall" />
 			<Add directory="support" />
-			<Add directory="Net" />
+			<Add directory="net" />
 		</Compiler>
 		<ResourceCompiler>
 			<Add directory="support" />
@@ -37,23 +37,21 @@
 			<Add option="-lboost_system" />
 			<Add option="-lboost_thread" />
 		</Linker>
-		<Unit filename="Net/Epoll.cpp" />
-		<Unit filename="Net/Epoll.h" />
-		<Unit filename="Net/IOEvent.cpp" />
-		<Unit filename="Net/IOEvent.h" />
-		<Unit filename="Net/IOEventCtrl.cpp" />
-		<Unit filename="Net/IOEventCtrl.h" />
-		<Unit filename="Net/IOEventLoop.cpp" />
-		<Unit filename="Net/IOEventLoop.h" />
-		<Unit filename="Net/Socket.cpp" />
-		<Unit filename="Net/Socket.h">
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
-		<Unit filename="Net/SocketAddr.cpp" />
-		<Unit filename="Net/SocketAddr.h" />
-		<Unit filename="Net/SocketOperation.cpp" />
-		<Unit filename="Net/SocketOperation.h" />
 		<Unit filename="demo/test/main.cpp" />
+		<Unit filename="net/Epoll.cpp" />
+		<Unit filename="net/Epoll.h" />
+		<Unit filename="net/IOEvent.cpp" />
+		<Unit filename="net/IOEvent.h" />
+		<Unit filename="net/IOEventCtrl.cpp" />
+		<Unit filename="net/IOEventCtrl.h" />
+		<Unit filename="net/IOEventLoop.cpp" />
+		<Unit filename="net/IOEventLoop.h" />
+		<Unit filename="net/Socket.cpp" />
+		<Unit filename="net/Socket.h" />
+		<Unit filename="net/SocketAddr.cpp" />
+		<Unit filename="net/SocketAddr.h" />
+		<Unit filename="net/SocketOperation.cpp" />
+		<Unit filename="net/SocketOperation.h" />
 		<Unit filename="support/AtomicInt.h" />
 		<Unit filename="support/Condition.h" />
 		<Unit filename="support/Mutex.h" />

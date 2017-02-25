@@ -15,13 +15,39 @@ int SocketOperation::createNonblockingSocket()
     return sockfd;
 
 }
+
+int SocketOperation::bind(int sockfd, const struct sockaddr_in* addr)
+{
+    int ret = ::bind(sockfd,  (struct sockaddr *)addr, (sizeof(struct sockaddr)));
+    if (ret < 0)
+    {
+
+    }
+    return ret;
+}
+
+int SocketOperation::listen(int sockfd)
+{
+    int ret = ::listen(sockfd, SOMAXCONN);
+    if (ret < 0)
+    {
+
+    }
+    return ret;
+}
 int  SocketOperation::connect(int sockfd, const struct sockaddr* addr)
 {
     return ::connect(sockfd, addr, static_cast<socklen_t>(sizeof(struct sockaddr_in6)));
 }
-int  SocketOperation::accept(int sockfd, struct sockaddr_in6* addr)
+int  SocketOperation::accept(int sockfd, struct sockaddr_in* addr)
 {
+    socklen_t addrlen = sizeof(struct sockaddr_in);
+    int ret = ::accept(sockfd, (struct sockaddr *)addr,&addrlen);
+    if(ret<0)
+    {
 
+    }
+    return ret;
 }
 ssize_t SocketOperation::read(int sockfd, void *buf, size_t count)
 {

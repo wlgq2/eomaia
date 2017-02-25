@@ -15,12 +15,14 @@ namespace net
 class SocketAddr
 {
 public:
+    SocketAddr();
     SocketAddr(struct sockaddr_in addr);
     SocketAddr(const string& addrPort);
     SocketAddr(const string& addr,uint16_t port);
     SocketAddr(uint16_t port);
     ~SocketAddr();
-    struct sockaddr_in getAddr();
+    void setAddr(struct sockaddr_in addr);
+    struct sockaddr_in* getAddr();
     bool isValid();
 private:
     bool valid;

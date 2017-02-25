@@ -21,7 +21,7 @@ int main()
         cout<<"error"<<endl;
         return -1;
     }
-    struct sockaddr_in haha = addr.getAddr();
+    struct sockaddr_in haha = *(addr.getAddr());
     cout<<"addr"<<haha.sin_addr.s_addr<<endl;
     cout<<"port"<<htons(haha.sin_port)<<endl;
     return 0;
