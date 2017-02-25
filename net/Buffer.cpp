@@ -64,12 +64,12 @@ int Buffer::readFromIO(int fd,int& errorNo)
     vec[1].iov_len = sizeof extrabuf;
 
     uint32_t iovcnt = (writable < sizeof extrabuf) ? 2 : 1;
-    uint32_t n = SocketOperation::readv(fd, vec, iovcnt);
+    int n = SocketOperation::readv(fd, vec, iovcnt);
     if (n < 0)
     {
         errorNo = errno;
     }
-    else if (n<= writable)
+    else if ((uint32_t)n<= writable)
     {
         writeIndex += n;
     }

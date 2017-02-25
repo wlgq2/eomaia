@@ -16,6 +16,11 @@ using namespace boost;
 //这个类初始化后避免程序被signal信号意外退出
 class IgnoreSigPipe
 {
+public:
+    static IgnoreSigPipe* getInstance ()
+    {
+        return singnal;
+    }
 private:
     IgnoreSigPipe()
     {

@@ -45,6 +45,7 @@ private:
     void readEvent();
     void closeEvent();
     void writeEvent();
+    void errorEvent();
     boost::function<void (boost::shared_ptr<TcpConnect>, Buffer&)> messageCallback;
     boost::function<void (boost::shared_ptr<TcpConnect>)> closeCallback;
 

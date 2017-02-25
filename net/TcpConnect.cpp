@@ -22,6 +22,8 @@ TcpConnect::TcpConnect(IOEventLoop* l,struct sockaddr_in addr,int fd)
     event->setReadFunc(boost::bind(&TcpConnect::readEvent,this));
     event->setCloseFunc(boost::bind(&TcpConnect::closeEvent,this));
     event->setWriteFunc(boost::bind(&TcpConnect::writeEvent,this));
+    event->setErrorFunc(boost::bind(&TcpConnect::errorEvent,this));
+
 }
 
 TcpConnect::~TcpConnect()
@@ -101,6 +103,11 @@ void TcpConnect::connectedHandle()
     //epoll为电平触发
     //event->enableWriting(true);
     event->enableErrorEvent(true);
+}
+
+void TcpConnect::errorEvent()
+{
+    closeEvent();
 }
 
 void TcpConnect::writeEvent()
