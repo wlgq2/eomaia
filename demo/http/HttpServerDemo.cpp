@@ -19,5 +19,6 @@ void HttpServerDemo::httpCallback(const HttpRequest&, HttpResponse* resp)
 {
     resp->setStatusCode(HttpResponse::k200Ok);
     resp->setStatusMessage("OK");
+    resp->setBody("a test program base on agilNet lib. \nauthor:  object_he@yeah.net");
     resp->setCloseConnection(true);
 }
