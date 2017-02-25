@@ -2,6 +2,7 @@
 #define AGILNET_NET_IOEVENTCTRL
 
 #include <map>
+#include <vector>
 #include <IOEvent.h>
 #include <boost/weak_ptr.hpp>
 #include <Epoll.h>
@@ -26,11 +27,14 @@ public:
     void addEvent(shared_ptr<IOEvent> event);
     void deleteEvent(shared_ptr<IOEvent> event);
     void modifyEvent(shared_ptr<IOEvent> event);
-    void waitAndRunHandle();
+    void waitAndRunHandle(int timeMs);
 private:
+    static const int activeEventLength;
     map<int,weak_ptr<IOEvent> > eventPool;
+
     Epoll epoll;
     IOEventLoop* loop;
+    vector<struct epoll_event> activeEvents;
 };
 
 }

@@ -8,6 +8,16 @@ SocketAddr::SocketAddr()
 {
 
 }
+
+
+SocketAddr::SocketAddr(bool isAny,int port)
+{
+    if(isAny)
+    {
+        SocketOperation::getAddrAnyIpv4(sockAddr,port);
+    }
+}
+
 SocketAddr::SocketAddr(struct sockaddr_in addr)
     : valid(true),
     sockAddr(addr)

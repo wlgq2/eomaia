@@ -16,6 +16,7 @@ class SocketAddr
 {
 public:
     SocketAddr();
+    explicit SocketAddr(bool isAny,int port = 0);
     SocketAddr(struct sockaddr_in addr);
     SocketAddr(const string& addrPort);
     SocketAddr(const string& addr,uint16_t port);

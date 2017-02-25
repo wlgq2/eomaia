@@ -57,17 +57,56 @@ int IOEvent::getFd()
     return eventFd;
 
 }
-int IOEvent::getEvents()
+uint32_t IOEvent::getEvents()
 {
     return events;
 }
 
+void IOEvent::setReadFunc(function<void()> func)
+{
+    readHandle = func;
+
+}
+void IOEvent::setWriteFunc(function<void()> func)
+{
+    writeHandle = func;
+
+}
+void IOEvent::setErrorFunc(function<void()> func)
+{
+    errorHandle = func;
+
+}
+void IOEvent::setCloseFunc(function<void()> func)
+{
+    closeHandle = func;
+}
 void IOEvent::update()
 {
 
 }
 
-void IOEvent::handle()
+void IOEvent::handle(uint32_t revents)
 {
+    if ((revents & EPOLLHUP) && !(revents & EPOLLIN))
+    {
+        if (closeHandle)
+            closeHandle();
+    }
 
+    if (revents & EPOLLERR)
+    {
+        if (errorHandle)
+            errorHandle();
+    }
+    if (revents & (EPOLLIN | EPOLLPRI | EPOLLRDHUP))
+    {
+        if (readHandle)
+            readHandle();
+    }
+    if (revents & EPOLLOUT)
+    {
+        if (writeHandle)
+            writeHandle();
+    }
 }

@@ -3,6 +3,7 @@
 
 using namespace agilNet::net;
 
+const int IOEventLoop::PollTimeMs = 3000;
 IOEventLoop::IOEventLoop()
     :eventCtrl(new IOEventCtrl(this))
 {
@@ -15,5 +16,8 @@ IOEventLoop::~IOEventLoop()
 }
 void IOEventLoop::run()
 {
-    eventCtrl->waitAndRunHandle();
+    while(true)
+    {
+        eventCtrl->waitAndRunHandle(PollTimeMs);
+    }
 }

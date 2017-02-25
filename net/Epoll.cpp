@@ -1,14 +1,13 @@
 #include <Epoll.h>
-#include <sys/epoll.h>
 
 
-#include <unistd.h>
+
 #include <string.h>
-
+#include <unistd.h>
 using namespace agilNet::net;
 
-Epoll::Epoll():
-    epollFd(epoll_create1(EPOLL_CLOEXEC))
+Epoll::Epoll()
+    :epollFd(epoll_create1(EPOLL_CLOEXEC))
 {
     if(epollFd<0)
     {
@@ -61,4 +60,10 @@ bool Epoll::modifyEvent(IOEvent* ioEvent)
         return false;
     }
     return true;
+}
+
+int Epoll::waitEvent(struct epoll_event* eventList,int eventSize,int timeMs)
+{
+    int rst = epoll_wait(epollFd, eventList, eventSize, timeMs);
+    return rst ;
 }

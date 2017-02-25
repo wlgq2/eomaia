@@ -17,6 +17,7 @@ public:
     void bind(SocketAddr& addr);
     int accept(SocketAddr& addr);
     void listen();
+    int getFd();
 private:
     int socketFd;
 };

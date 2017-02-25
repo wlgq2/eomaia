@@ -5,6 +5,9 @@
 
 using namespace agilNet::net;
 
+const int32_t SocketOperation::Ipv4AddrAny =htonl (INADDR_ANY);
+
+
 int SocketOperation::createNonblockingSocket()
 {
     int sockfd = ::socket(AF_INET, SOCK_STREAM | SOCK_NONBLOCK | SOCK_CLOEXEC, IPPROTO_TCP);
@@ -68,6 +71,14 @@ void SocketOperation::close(int sockfd)
 
     }
 }
+void SocketOperation::getAddrAnyIpv4(struct sockaddr_in& addrIn,uint16_t port)
+{
+    bzero(&addrIn, sizeof(addrIn));
+    addrIn.sin_family = AF_INET;
+    addrIn.sin_port = htons(port);
+    addrIn.sin_addr.s_addr = Ipv4AddrAny;
+}
+
 bool SocketOperation::toAddrIpv4(const string& addrIp,struct sockaddr_in& addrIn)
 {
     vector<string> strs;
@@ -84,7 +95,7 @@ bool SocketOperation::toAddrIpv4(const string& addrIp,struct sockaddr_in& addrIn
     }
     return toAddrIpv4(strs[0],port,addrIn);
 }
-bool SocketOperation::toAddrIpv4(const string& addr,int port,struct sockaddr_in& addrIn)
+bool SocketOperation::toAddrIpv4(const string& addr,uint16_t port,struct sockaddr_in& addrIn)
 {
     vector<string> ip;
     boost::split(ip, addr, boost::is_any_of("."));
@@ -118,7 +129,7 @@ bool SocketOperation::toAddrIpv4(const string& addr,int port,struct sockaddr_in&
     return true;
 }
 
-bool SocketOperation::toAddrIpv4(int port,struct sockaddr_in& addrIn)
+bool SocketOperation::toAddrIpv4(uint16_t port,struct sockaddr_in& addrIn)
 {
     bzero(&addrIn, sizeof(addrIn));
     addrIn.sin_family = AF_INET;

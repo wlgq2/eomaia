@@ -14,6 +14,7 @@ public :
     ~IOEventLoop();
     void run();
 private:
+    static const int PollTimeMs;
     IOEventCtrl* eventCtrl;
 };
 }

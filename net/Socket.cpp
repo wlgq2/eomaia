@@ -13,7 +13,10 @@ Socket::~Socket()
 {
     SocketOperation::close(socketFd);
 }
-
+int Socket::getFd()
+{
+    return socketFd;
+}
 void Socket::bind(SocketAddr& addr)
 {
     SocketOperation::bind(socketFd,addr.getAddr());
