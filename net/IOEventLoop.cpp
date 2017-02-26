@@ -21,3 +21,16 @@ void IOEventLoop::run()
         eventCtrl->waitAndRunHandle(PollTimeMs);
     }
 }
+
+void IOEventLoop::addEvent(shared_ptr<IOEvent> event)
+{
+    eventCtrl->addEvent(event);
+}
+void IOEventLoop::removeEvent(shared_ptr<IOEvent> event)
+{
+    eventCtrl->deleteEvent(event);
+}
+void IOEventLoop::modifyEvent(shared_ptr<IOEvent> event)
+{
+    eventCtrl->modifyEvent(event);
+}

@@ -28,14 +28,13 @@ int main()
     Socket socket(SocketOperation::createNonblockingSocket());
     socket.bind(addr);
     socket.listen();
-    shared_ptr<IOEvent> e1(new IOEvent(socket.getFd()));
+    shared_ptr<IOEvent> event(new IOEvent(socket.getFd()));
    // e1->setB
-    e1->enableReading();
-    e1->setReadFunc(boost::bind(accetp));
-    IOEventLoop el;
-    IOEventCtrl ec(&el);
-    ec.addEvent(e1);
-    el.run();
+    event->enableReading();
+    event->setReadFunc(boost::bind(accetp));
+    IOEventLoop loop;
+    loop.addEvent(event);
+    loop.run();
     return 0;
 
 }

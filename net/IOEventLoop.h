@@ -12,6 +12,10 @@ class IOEventLoop
 public :
     IOEventLoop();
     ~IOEventLoop();
+
+    void addEvent(shared_ptr<IOEvent> event);
+    void removeEvent(shared_ptr<IOEvent> event);
+    void modifyEvent(shared_ptr<IOEvent> event);
     void run();
 private:
     static const int PollTimeMs;
