@@ -20,7 +20,7 @@ public:
 private:
     virtual void connectCallback(boost::shared_ptr<TcpConnect> tcpConnect);
     virtual void messageCallback(boost::shared_ptr<TcpConnect>, Buffer&);
-    virtual void writeCompletCallback() ;
+    virtual void writeCompletCallback(boost::shared_ptr<TcpConnect> tcpConnect) ;
     virtual void connectCloseCallback(boost::shared_ptr<TcpConnect>);
 
     virtual void httpCallback(const HttpRequest&, HttpResponse*);

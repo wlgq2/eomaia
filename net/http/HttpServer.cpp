@@ -40,7 +40,7 @@ void HttpServer::messageCallback(boost::shared_ptr<TcpConnect> tcpConnect, Buffe
         context.reset();
     }
 }
-void HttpServer::writeCompletCallback()
+void HttpServer::writeCompletCallback(boost::shared_ptr<TcpConnect> tcpConnect)
 {
 
 }

@@ -126,7 +126,8 @@ void TcpConnect::writeEvent()
                 {
                     shared_ptr<TcpConnect> tmp(this);
                     writeCompleteCallback(tmp);
-                    //loop_->queueInLoop(boost::bind(writeCompleteCallback_, shared_from_this()));
+                    if(writeCompleteCallback)
+                        writeCompleteCallback( shared_from_this());
                 }
             }
             /*
@@ -178,9 +179,7 @@ void TcpConnect::write(const void* data,uint32_t length)
             remaining = length - n;
             if (remaining == 0 && writeCompleteCallback)
             {
-                shared_ptr<TcpConnect> tmp(this);
-                //loop->queueInLoop(boost::bind(writeCompleteCallback, shared_from_this()));
-                writeCompleteCallback(tmp);
+                writeCompleteCallback(shared_from_this());
             }
         }
         else

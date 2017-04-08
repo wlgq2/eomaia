@@ -25,7 +25,7 @@ public:
     void start();
     virtual void connectCallback(boost::shared_ptr<TcpConnect> tcpConnect)=0;
     virtual void messageCallback(boost::shared_ptr<TcpConnect>, Buffer&)=0;
-    virtual void writeCompletCallback() = 0;
+    virtual void writeCompletCallback(boost::shared_ptr<TcpConnect> tcpConnect) = 0;
     virtual void connectCloseCallback(boost::shared_ptr<TcpConnect>)=0;
 
     void addConnect(std::string name,boost::shared_ptr<TcpConnect> connect);

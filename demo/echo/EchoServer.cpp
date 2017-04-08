@@ -28,9 +28,12 @@ void EchoServer::messageCallback(shared_ptr<TcpConnect> tcpConnect, Buffer& buff
     LogOutput(info)<<"receive data form "<<addr<<":"<<data;
     tcpConnect->write(data);
 }
-void EchoServer::writeCompletCallback()
+void EchoServer::writeCompletCallback(boost::shared_ptr<TcpConnect> tcpConnect)
 {
-
+    cout<<"thread id:"<<boost::this_thread::get_id()<<endl;
+    string addr = tcpConnect->getAddr().toString();
+    cout<<addr<<":"<<"write complet "<<<<endl;
+    LogOutput(info)<<addr<<":"<<"write complet "<<<<endl;
 }
 
 void EchoServer::connectCloseCallback( boost::shared_ptr<TcpConnect> connect)
