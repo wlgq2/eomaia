@@ -44,5 +44,5 @@
 2.`net/IOEventLoopThread类`  ：Thread类的子类，实现具体业务逻辑，对应一个IOEventLoop事件循环，并在IOEventLoop记录当前线程ID。<br>
 3.`net/IOEventLoopThreadPool类`  ：线程池类，有新连接建立时，从线程池中分配一个线程给该TCP连接使用。<br>
 
-##六.关于该库的使用
+## 六.关于该库的使用
 只要继承自TcpServer类并实现几个虚事件函数即可.详见dome文件夹<br>
