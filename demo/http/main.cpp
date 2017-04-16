@@ -2,7 +2,7 @@
 #include <support/Log.h>
 #include <net/IOEventLoop.h>
 #include <net/IOEventLoopThread.h>
-#include <demo/http/HttpServerDemo.h>
+#include "HttpServerDemo.h"
 
 using namespace std;
 using namespace agilNet::log;

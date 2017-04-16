@@ -1,4 +1,4 @@
-#include <demo/http/HttpServerDemo.h>
+#include "HttpServerDemo.h"
 #include <iostream>
 
 #include <support/Log.h>

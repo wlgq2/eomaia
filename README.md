@@ -9,7 +9,7 @@
 2.apt-get install g++<br>
 3.apt-get install libboost-all-dev<br>
 4.apt-get install codeblocks<br>
-5.用codeblocks打开工程，点击build即可。<br>
+5.用codeblocks打开demo目录下工程，点击build即可。<br>
 
 ## 一.目录结构
 1.`demo` 相关测试例程 <br>

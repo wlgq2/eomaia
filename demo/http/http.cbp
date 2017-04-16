@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="agilNet" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/agilNet" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/agilNet" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-DBOOST_ALL_DYN_LINK" />
+			<Add directory="../../agilNet" />
+		</Compiler>
+		<ResourceCompiler>
+			<Add directory="support" />
+		</ResourceCompiler>
+		<Linker>
+			<Add option="-lboost_system" />
+			<Add option="-lboost_thread" />
+			<Add option="-lboost_log" />
+			<Add option="-lpthread" />
+			<Add option="-lboost_log_setup" />
+		</Linker>
+		<Unit filename="../../agilNet/net/Buffer.cpp" />
+		<Unit filename="../../agilNet/net/Buffer.h" />
+		<Unit filename="../../agilNet/net/Epoll.cpp" />
+		<Unit filename="../../agilNet/net/Epoll.h" />
+		<Unit filename="../../agilNet/net/IOEvent.cpp" />
+		<Unit filename="../../agilNet/net/IOEvent.h" />
+		<Unit filename="../../agilNet/net/IOEventCtrl.cpp" />
+		<Unit filename="../../agilNet/net/IOEventCtrl.h" />
+		<Unit filename="../../agilNet/net/IOEventLoop.cpp" />
+		<Unit filename="../../agilNet/net/IOEventLoop.h" />
+		<Unit filename="../../agilNet/net/IOEventLoopThread.cpp" />
+		<Unit filename="../../agilNet/net/IOEventLoopThread.h" />
+		<Unit filename="../../agilNet/net/IOEventLoopThreadPool.cpp" />
+		<Unit filename="../../agilNet/net/IOEventLoopThreadPool.h" />
+		<Unit filename="../../agilNet/net/Socket.cpp" />
+		<Unit filename="../../agilNet/net/Socket.h" />
+		<Unit filename="../../agilNet/net/SocketAddr.cpp" />
+		<Unit filename="../../agilNet/net/SocketAddr.h" />
+		<Unit filename="../../agilNet/net/SocketOperation.cpp" />
+		<Unit filename="../../agilNet/net/SocketOperation.h" />
+		<Unit filename="../../agilNet/net/TcpAccept.cpp" />
+		<Unit filename="../../agilNet/net/TcpAccept.h" />
+		<Unit filename="../../agilNet/net/TcpConnect.cpp" />
+		<Unit filename="../../agilNet/net/TcpConnect.h" />
+		<Unit filename="../../agilNet/net/TcpServer.cpp" />
+		<Unit filename="../../agilNet/net/TcpServer.h" />
+		<Unit filename="../../agilNet/net/Timer.cpp" />
+		<Unit filename="../../agilNet/net/Timer.h" />
+		<Unit filename="../../agilNet/net/TimerQueue.cpp" />
+		<Unit filename="../../agilNet/net/TimerQueue.h" />
+		<Unit filename="../../agilNet/net/http/HttpContext.cpp" />
+		<Unit filename="../../agilNet/net/http/HttpContext.h" />
+		<Unit filename="../../agilNet/net/http/HttpRequest.h" />
+		<Unit filename="../../agilNet/net/http/HttpResponse.cpp" />
+		<Unit filename="../../agilNet/net/http/HttpResponse.h" />
+		<Unit filename="../../agilNet/net/http/HttpServer.cpp" />
+		<Unit filename="../../agilNet/net/http/HttpServer.h" />
+		<Unit filename="../../agilNet/support/AtomicInt.h" />
+		<Unit filename="../../agilNet/support/Condition.h" />
+		<Unit filename="../../agilNet/support/Log.cpp" />
+		<Unit filename="../../agilNet/support/Log.h" />
+		<Unit filename="../../agilNet/support/Mutex.h" />
+		<Unit filename="../../agilNet/support/Thread.cpp" />
+		<Unit filename="../../agilNet/support/Thread.h" />
+		<Unit filename="HttpServerDemo.cpp" />
+		<Unit filename="HttpServerDemo.h" />
+		<Unit filename="main.cpp" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+			<envvars />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

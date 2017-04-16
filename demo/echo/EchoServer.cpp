@@ -1,4 +1,4 @@
-#include <demo/echo/EchoServer.h>
+#include "EchoServer.h"
 #include <iostream>
 
 #include <support/Log.h>
@@ -32,8 +32,8 @@ void EchoServer::writeCompletCallback(boost::shared_ptr<TcpConnect> tcpConnect)
 {
     cout<<"thread id:"<<boost::this_thread::get_id()<<endl;
     string addr = tcpConnect->getAddr().toString();
-    cout<<addr<<":"<<"write complet "<<<<endl;
-    LogOutput(info)<<addr<<":"<<"write complet "<<<<endl;
+    cout<<addr<<":"<<"write complet "<<endl;
+    LogOutput(info)<<addr<<":"<<"write complet "<<endl;
 }
 
 void EchoServer::connectCloseCallback( boost::shared_ptr<TcpConnect> connect)
