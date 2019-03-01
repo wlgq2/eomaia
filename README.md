@@ -1,4 +1,4 @@
-# agilNet
+# eomaia
 一个基于reactor模式+epoll复用机制的C++网络库，支持one loop per thread.  参考学习陈硕的muduo<br>
 
 并发性能测试：日后更新<br>

@@ -1,0 +1,224 @@
+# depslib dependency file v1.0
+1551429320 source:/media/sf_virbox_share/sources/eomaia/eomaia/base/Thread.cpp
+	<base/Thread.h>
+	<chrono>
+
+1551429595 /media/sf_virbox_share/sources/eomaia/eomaia/base/Thread.h
+	<thread>
+	<memory>
+	<condition_variable>
+
+1551429561 source:/media/sf_virbox_share/sources/eomaia/eomaia/net/Buffer.cpp
+	<net/Buffer.h>
+	<errno.h>
+	<sys/uio.h>
+	<net/SocketOperation.h>
+
+1551429595 /media/sf_virbox_share/sources/eomaia/eomaia/net/Buffer.h
+	<vector>
+	<stdint.h>
+	<iostream>
+	<algorithm>
+
+1551429595 /media/sf_virbox_share/sources/eomaia/eomaia/net/SocketOperation.h
+	<sys/types.h>
+	<string>
+	<netinet/in.h>
+	<linux/tcp.h>
+
+1551429561 source:/media/sf_virbox_share/sources/eomaia/eomaia/net/Epoll.cpp
+	<net/Epoll.h>
+	<base/LogInterface.h>
+	<string.h>
+	<unistd.h>
+
+1551429595 /media/sf_virbox_share/sources/eomaia/eomaia/net/Epoll.h
+	<sys/epoll.h>
+	<net/IOEvent.h>
+
+1551429595 /media/sf_virbox_share/sources/eomaia/eomaia/net/IOEvent.h
+	<functional>
+
+1551429561 /media/sf_virbox_share/sources/eomaia/eomaia/base/LogInterface.h
+	<string>
+	<functional>
+	<atomic>
+
+1551429561 source:/media/sf_virbox_share/sources/eomaia/eomaia/net/http/HttpContext.cpp
+	<net/Buffer.h>
+	<net/http/HttpContext.h>
+	<iostream>
+	<algorithm>
+
+1551429595 /media/sf_virbox_share/sources/eomaia/eomaia/net/http/HttpContext.h
+	<net/http/HttpRequest.h>
+
+1551429595 /media/sf_virbox_share/sources/eomaia/eomaia/net/http/HttpRequest.h
+	<map>
+	<assert.h>
+	<stdio.h>
+	<iostream>
+
+1551429561 source:/media/sf_virbox_share/sources/eomaia/eomaia/net/http/HttpResponse.cpp
+	<net/http/HttpResponse.h>
+	<net/Buffer.h>
+	<stdio.h>
+	<iostream>
+
+1551429595 /media/sf_virbox_share/sources/eomaia/eomaia/net/http/HttpResponse.h
+	<iostream>
+	<map>
+
+1551429561 source:/media/sf_virbox_share/sources/eomaia/eomaia/net/http/HttpServer.cpp
+	<net/http/HttpServer.h>
+	<net/http/HttpContext.h>
+	<iostream>
+	<base/LogInterface.h>
+
+1551429595 /media/sf_virbox_share/sources/eomaia/eomaia/net/http/HttpServer.h
+	<net/TcpServer.h>
+	<net/http/HttpResponse.h>
+	<net/http/HttpRequest.h>
+
+1551429595 /media/sf_virbox_share/sources/eomaia/eomaia/net/TcpServer.h
+	<map>
+	<atomic>
+	<net/IOEventLoop.h>
+	<net/TcpAccept.h>
+	<net/TcpConnect.h>
+	<net/IOEventLoopThreadPool.h>
+
+1551429595 /media/sf_virbox_share/sources/eomaia/eomaia/net/IOEventLoop.h
+	<thread>
+	<mutex>
+	<net/TimerQueue.h>
+	<net/IOEventCtrl.h>
+
+1551429595 /media/sf_virbox_share/sources/eomaia/eomaia/net/TimerQueue.h
+	<map>
+	<memory>
+	<functional>
+	<net/IOEvent.h>
+	<net/Timer.h>
+	<mutex>
+
+1551429595 /media/sf_virbox_share/sources/eomaia/eomaia/net/Timer.h
+	<stdint.h>
+	<sys/time.h>
+	<functional>
+	<memory>
+
+1551429595 /media/sf_virbox_share/sources/eomaia/eomaia/net/IOEventCtrl.h
+	<map>
+	<vector>
+	<memory>
+	<net/Epoll.h>
+	<net/IOEvent.h>
+
+1551429595 /media/sf_virbox_share/sources/eomaia/eomaia/net/TcpAccept.h
+	<functional>
+	<net/IOEventLoop.h>
+	<net/Socket.h>
+
+1551429595 /media/sf_virbox_share/sources/eomaia/eomaia/net/Socket.h
+	<net/SocketOperation.h>
+	<net/SocketAddr.h>
+
+1551429595 /media/sf_virbox_share/sources/eomaia/eomaia/net/SocketAddr.h
+	<netinet/in.h>
+	<iostream>
+
+1551429595 /media/sf_virbox_share/sources/eomaia/eomaia/net/TcpConnect.h
+	<memory>
+	<functional>
+	<net/IOEventLoop.h>
+	<net/Socket.h>
+	<net/Buffer.h>
+
+1551429595 /media/sf_virbox_share/sources/eomaia/eomaia/net/IOEventLoopThreadPool.h
+	<vector>
+	<memory>
+	<net/IOEventLoopThread.h>
+	<net/IOEventLoop.h>
+
+1551429595 /media/sf_virbox_share/sources/eomaia/eomaia/net/IOEventLoopThread.h
+	<base/Thread.h>
+	<condition_variable>
+	<net/IOEventLoop.h>
+
+1551429561 source:/media/sf_virbox_share/sources/eomaia/eomaia/net/IOEvent.cpp
+	<net/IOEvent.h>
+	<sys/epoll.h>
+	<unistd.h>
+	<net/IOEventLoop.h>
+
+1551429561 source:/media/sf_virbox_share/sources/eomaia/eomaia/net/IOEventCtrl.cpp
+	<net/IOEventCtrl.h>
+
+1551429561 source:/media/sf_virbox_share/sources/eomaia/eomaia/net/IOEventLoop.cpp
+	<net/IOEventLoop.h>
+	<signal.h>
+	<base/LogInterface.h>
+	<base/Thread.h>
+	<iostream>
+
+1551429561 source:/media/sf_virbox_share/sources/eomaia/eomaia/net/IOEventLoopThread.cpp
+	<net/IOEventLoopThread.h>
+	<iostream>
+
+1551429561 source:/media/sf_virbox_share/sources/eomaia/eomaia/net/IOEventLoopThreadPool.cpp
+	<net/IOEventLoopThreadPool.h>
+
+1551429561 source:/media/sf_virbox_share/sources/eomaia/eomaia/net/Socket.cpp
+	<net/Socket.h>
+	<net/SocketOperation.h>
+
+1551429561 source:/media/sf_virbox_share/sources/eomaia/eomaia/net/SocketAddr.cpp
+	<net/SocketAddr.h>
+	<net/SocketOperation.h>
+
+1551429561 source:/media/sf_virbox_share/sources/eomaia/eomaia/net/SocketOperation.cpp
+	<net/SocketOperation.h>
+	<vector>
+	<sstream>
+	<base/LogInterface.h>
+	<unistd.h>
+	<cstring>
+
+1551429561 source:/media/sf_virbox_share/sources/eomaia/eomaia/net/TcpAccept.cpp
+	<net/TcpAccept.h>
+	<thread>
+	<unistd.h>
+
+1551429561 source:/media/sf_virbox_share/sources/eomaia/eomaia/net/TcpConnect.cpp
+	<net/TcpConnect.h>
+	<thread>
+	<base/LogInterface.h>
+	<iostream>
+	<cstring>
+	<functional>
+
+1551429561 source:/media/sf_virbox_share/sources/eomaia/eomaia/net/TcpServer.cpp
+	<net/TcpServer.h>
+	<thread>
+	<base/LogInterface.h>
+
+1551429561 source:/media/sf_virbox_share/sources/eomaia/eomaia/net/Timer.cpp
+	<net/Timer.h>
+	<sstream>
+
+1551429561 source:/media/sf_virbox_share/sources/eomaia/eomaia/net/TimerQueue.cpp
+	<net/TimerQueue.h>
+	<net/IOEventLoop.h>
+	<sys/timerfd.h>
+	<base/LogInterface.h>
+	<cstring>
+	<unistd.h>
+
+1551429561 source:/media/sf_virbox_share/sources/eomaia/examples/timer/main.cpp
+	<iostream>
+	<base/LogInterface.h>
+	<net/IOEventLoop.h>
+	<net/IOEventLoopThread.h>
+	<functional>
+

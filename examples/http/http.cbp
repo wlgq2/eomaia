@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="HttpServer" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/HttpServer" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/HttpServer" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-std=c++11" />
+			<Add option="-Wall" />
+			<Add directory="../../eomaia" />
+		</Compiler>
+		<ResourceCompiler>
+			<Add directory="support" />
+		</ResourceCompiler>
+		<Linker>
+			<Add option="-lpthread" />
+		</Linker>
+		<Unit filename="../../eomaia/base/LogInterface.h" />
+		<Unit filename="../../eomaia/base/Thread.cpp" />
+		<Unit filename="../../eomaia/base/Thread.h" />
+		<Unit filename="../../eomaia/net/Buffer.cpp" />
+		<Unit filename="../../eomaia/net/Buffer.h" />
+		<Unit filename="../../eomaia/net/Epoll.cpp" />
+		<Unit filename="../../eomaia/net/Epoll.h" />
+		<Unit filename="../../eomaia/net/IOEvent.cpp" />
+		<Unit filename="../../eomaia/net/IOEvent.h" />
+		<Unit filename="../../eomaia/net/IOEventCtrl.cpp" />
+		<Unit filename="../../eomaia/net/IOEventCtrl.h" />
+		<Unit filename="../../eomaia/net/IOEventLoop.cpp" />
+		<Unit filename="../../eomaia/net/IOEventLoop.h" />
+		<Unit filename="../../eomaia/net/IOEventLoopThread.cpp" />
+		<Unit filename="../../eomaia/net/IOEventLoopThread.h" />
+		<Unit filename="../../eomaia/net/IOEventLoopThreadPool.cpp" />
+		<Unit filename="../../eomaia/net/IOEventLoopThreadPool.h" />
+		<Unit filename="../../eomaia/net/Socket.cpp" />
+		<Unit filename="../../eomaia/net/Socket.h" />
+		<Unit filename="../../eomaia/net/SocketAddr.cpp" />
+		<Unit filename="../../eomaia/net/SocketAddr.h" />
+		<Unit filename="../../eomaia/net/SocketOperation.cpp" />
+		<Unit filename="../../eomaia/net/SocketOperation.h" />
+		<Unit filename="../../eomaia/net/TcpAccept.cpp" />
+		<Unit filename="../../eomaia/net/TcpAccept.h" />
+		<Unit filename="../../eomaia/net/TcpConnect.cpp" />
+		<Unit filename="../../eomaia/net/TcpConnect.h" />
+		<Unit filename="../../eomaia/net/TcpServer.cpp" />
+		<Unit filename="../../eomaia/net/TcpServer.h" />
+		<Unit filename="../../eomaia/net/Timer.cpp" />
+		<Unit filename="../../eomaia/net/Timer.h" />
+		<Unit filename="../../eomaia/net/TimerQueue.cpp" />
+		<Unit filename="../../eomaia/net/TimerQueue.h" />
+		<Unit filename="../../eomaia/net/http/HttpContext.cpp" />
+		<Unit filename="../../eomaia/net/http/HttpContext.h" />
+		<Unit filename="../../eomaia/net/http/HttpRequest.h" />
+		<Unit filename="../../eomaia/net/http/HttpResponse.cpp" />
+		<Unit filename="../../eomaia/net/http/HttpResponse.h" />
+		<Unit filename="../../eomaia/net/http/HttpServer.cpp" />
+		<Unit filename="../../eomaia/net/http/HttpServer.h" />
+		<Unit filename="HttpServerDemo.cpp" />
+		<Unit filename="HttpServerDemo.h" />
+		<Unit filename="main.cpp" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+			<envvars />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
