@@ -14,6 +14,7 @@ Description: https://github.com/wlgq2/eomaia
 #include <string>
 #include <functional>
 #include <atomic>
+#include <iostream>
 
 namespace base
 {
@@ -58,6 +59,8 @@ public:
         {
             funcs_[level](data);
         }
+        else
+            std::cout<<data;
     }
     void write(int level, std::string&& data)
     {
@@ -65,46 +68,65 @@ public:
         {
             funcs_[level](data);
         }
+        else
+            std::cout<<data;
     }
     void warn(const std::string& data)
     {
         if (handle_)
             handle_->warn(data);
+        else
+            std::cout<<data<<std::endl;
     }
     void warn(const std::string&& data)
     {
         if (handle_)
             handle_->warn(data);
+        else
+            std::cout<<data<<std::endl;
     }
     void error(const std::string& data)
     {
         if (handle_)
             handle_->error(data);
+        else
+            std::cerr<<data<<std::endl;
     }
     void error(const std::string&& data)
     {
         if (handle_)
             handle_->error(data);
+        else
+            std::cerr<<data<<std::endl;
     }
     void info(const std::string& data)
     {
         if (handle_)
             handle_->info(data);
+        else
+            std::cout<<data<<std::endl;
     }
     void info(const std::string&& data)
     {
         if (handle_)
             handle_->info(data);
+        else
+            std::cout<<data<<std::endl;
     }
     void debug(const std::string& data)
     {
         if (handle_)
             handle_->debug(data);
+        else
+            std::cout<<data<<std::endl;
     }
     void debug(const std::string&& data)
     {
         if (handle_)
             handle_->debug(data);
+        else
+            std::cout<<data<<std::endl;
+
     }
 
     static void ToHex(std::string& message,const char* data,unsigned int size)
