@@ -6,12 +6,12 @@
 ## 编译
 <br>提供codeblocks与Cmake两种方式编译。</br>
 * codeblocks 编译： 
-1.  apt-get install codeblocks
+1.  `apt-get install codeblocks`
 2.  用codeblocks打开example目录下工程，点击build即可。
 * cmake编译： 
-1.  mkdir build
-2.  cd build
-3.  cmake ..
+1.  `mkdir build`
+2.  `cd build`
+3.  `cmake ..`
 4.  将头文件与.so、.a文件加入工程。
 
 ## 目录结构
@@ -48,6 +48,6 @@
 3.`net/IOEventLoopThreadPool类`  ：线程池类，有新连接建立时，从线程池中分配一个线程给该TCP连接使用。<br>
 
 ## 例程与使用
-* example/echo：回显服务器。
-* example/http：http服务demo。
-* example/timer:定时器使用例程。
+* `example/echo`： 回显服务器。
+* `example/http`： http服务demo。
+* `example/timer`: 定时器使用例程。
