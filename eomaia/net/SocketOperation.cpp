@@ -6,6 +6,7 @@
 
 #include <unistd.h>
 #include <cstring>
+#include <sys/uio.h>
 
 using namespace eomaia::net;
 using namespace std;

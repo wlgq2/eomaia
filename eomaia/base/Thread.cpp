@@ -1,5 +1,6 @@
 #include <base/Thread.h>
 #include <chrono>
+#include <functional>
 
 using namespace base;
 
