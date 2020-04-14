@@ -42,7 +42,7 @@ void Timer::update()
 uint64_t Timer::getTimeOutMSecond()
 {
     struct timeval timeOut = getTimeOut();
-    int mSecond = timeOut.tv_sec *1000 + timeOut.tv_usec/1000;
+    uint64_t mSecond = timeOut.tv_sec *1000 + timeOut.tv_usec/1000;
     return mSecond;
 }
 
